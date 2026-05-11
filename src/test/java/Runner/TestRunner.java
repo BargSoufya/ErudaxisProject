@@ -11,9 +11,12 @@ import io.cucumber.junit.CucumberOptions;
 	@CucumberOptions(
 			features ="src\\main\\resources\\Features\\RepasAvecDatepasse.feature",
 			glue= "StepDef",
-			plugin = {"pretty","html:target/cucumber/report.html"}
+			plugin = {"pretty",
+					  "html:target/cucumber/report.html",
+					 "json:target/cucumber/report.json"
+					 }
 			
 			
 			)
-	public class Runner {
+	public class TestRunner {
 }
