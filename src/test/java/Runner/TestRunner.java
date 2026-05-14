@@ -13,7 +13,8 @@ import io.cucumber.junit.CucumberOptions;
 			glue= "StepDef",
 			plugin = {"pretty",
 					  "html:target/cucumber/report.html",
-					 "json:target/cucumber/report.json"
+					 "json:target/cucumber/report.json",
+					  "json:target/allure-results/allure.json"
 					 }
 			
 			
