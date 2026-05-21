@@ -2,14 +2,13 @@ pipeline {
     agent any
 
     tools {
-        maven 'maven'
+        maven 'Maven'
     }
 
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main',
-                    url: 'https://github.com/BargSoufya/ErudaxisProject.git'
+                git 'https://github.com/BargSoufya/ErudaxisProject.git'
             }
         }
 
@@ -22,19 +21,12 @@ pipeline {
 
     post {
         always {
-            // Rapport Allure
+            // ✅ Allure avec résultats correctement pointés
             allure([
                 includeProperties: false,
-                reportBuildPolicy: 'ALWAYS',
+                jdk: '',
                 results: [[path: 'allure-results']]
             ])
-
-            // Rapport Cucumber
-            cucumber(
-                fileIncludePattern: '**/*.json',
-                jsonReportDirectory: 'target/cucumber',
-                reportTitle: 'Cucumber Report'
-            )
         }
     }
 }
