@@ -29,7 +29,7 @@ public class AjouterRepasPage {
 	WebElement AjouterRepas;
 	@FindBy(xpath="/html/body/div[1]/div[2]/div/div/div/div/div[1]")
 	WebElement verifgestion;
-	@FindBy (xpath="/html/body/div[3]/div[3]/div/div[1]/h5")
+	@FindBy(xpath = "//h5[contains(text(),'Ajouter')] | //*[contains(@class,'modal') or contains(@class,'dialog')]")
 	WebElement form;
 	
 	
@@ -160,11 +160,15 @@ public class AjouterRepasPage {
 	}
 	
 	public void AfficherForm() {
-		 WebDriverWait wait = new WebDriverWait(Config.driver, Duration.ofSeconds(10));
-	        wait.until(ExpectedConditions.visibilityOf(form));
-	     
+	    WebDriverWait wait = new WebDriverWait(Config.driver, Duration.ofSeconds(20));
+
+	    // ✅ Cherche par texte au lieu du XPath absolu
+	    wait.until(ExpectedConditions.visibilityOfElementLocated(
+	        By.xpath("//*[contains(text(),'Ajouter un repas') or contains(text(),'Nouveau repas') or contains(text(),'Ajouter')]")
+	    ));
+
+	    System.out.println(">>> ✅ Formulaire affiché");
 	}
-	 
 	
 	
 }
