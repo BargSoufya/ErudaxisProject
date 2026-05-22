@@ -42,7 +42,7 @@ public class AjouterChauffeurNomVide {
 	}
 	
 	
-	public void saisirlesChamps public void saisirlesChamps(String prenom,String email, String cin, String PhoneNumber, String adre) {
+	public void saisirlesChamps(String prenom,String email, String cin, String PhoneNumber, String adre) {
 		PrenomChauffeur.sendKeys(prenom);
 		EmailChauff.sendKeys(email);
 		CINChauff.sendKeys(String.valueOf(cin));
