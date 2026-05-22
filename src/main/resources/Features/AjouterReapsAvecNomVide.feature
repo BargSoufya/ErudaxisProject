@@ -1,13 +1,13 @@
 Feature: Ajouter un repas avec nom vide
 
   Background:
-    Given l'admin est authentifié par l'email "bargaoui.aycha@gmail.com" et le mot de passe "Aycha@2026!"
-    And l'admin choisit le rôle "college"
-    When l'admin clique sur le menu "Cantine"
-    Then le sous-menu "Gestion Cantine" s'affiche
-    When l'admin clique sur le sous-menu "Gestion Cantine"
-    Then la page "Gestion de la Cantine" s'affiche
-    When l'admin clique sur le bouton "Ajouter un repas"
+    Given l admin est authentifié par l'email "bargaoui.aycha@gmail.com" et le mot de passe "Aycha@2026!"
+    And l admin choisit le rôle "college"
+    When l admin clique sur le menu "Cantine"
+    Then le sous-menu "Gestion Cantine" s affiche
+    When l admin clique sur le sous-menu "Gestion Cantine"
+    Then la page "Gestion de la Cantine" s affiche
+    When l admin clique sur le bouton "Ajouter un repas"
    
 
   Scenario: Ajouter un nouveau repas avec nom vide

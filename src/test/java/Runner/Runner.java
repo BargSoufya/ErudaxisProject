@@ -9,7 +9,7 @@ import io.cucumber.junit.CucumberOptions;
 
 	@RunWith(Cucumber.class)
 	@CucumberOptions(
-			features ="src\\main\\resources\\Features\\RepasAvecDatepasse.feature",
+			features ="src\\main\\resources\\Features\\AjouterUnChauffeurAvecNomVide.feature",
 			glue= "StepDef",
 			plugin = {"pretty","html:target/cucumber/report.html"}
 			

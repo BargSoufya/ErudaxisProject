@@ -63,17 +63,19 @@ public class AjouterRepasPage {
 	                System.out.println(">>> ✅ Menu cliqué : " + menuTitle);
 	                return; // stop dès qu'on trouve
 	            }
-	        }
-
-	        // Si aucun menu trouvé
+	        
+	        
+	    
+	    // Si aucun menu trouvé
 	        throw new RuntimeException("❌ Menu non trouvé : " + menuTitle);
-
-	    } catch (Exception e) {
-	        throw new RuntimeException("❌ Erreur lors du clic sur le menu : " + menuTitle, e);
-	    }
-	}
+	   }
 	
-
+	  } catch (Exception e) {
+	       throw new RuntimeException("❌ Erreur lors du clic sur le menu : " + menuTitle, e);
+	    }
+	
+	
+	}
 	public void ClickOnSousMenu( String SubmenuTitle)  {
 	    WebDriverWait wait = new WebDriverWait(Config.driver, Duration.ofSeconds(15));
 
@@ -117,7 +119,7 @@ public class AjouterRepasPage {
 	    submenuTitle = submenuTitle.replace("<", "").replace(">", "").trim();
 
 	    List<WebElement> submenus = wait.until(
-	        ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("/html/body/div[1]/div[1]/div/ul/a[8]/div/div/div/ul[1]/a/li/div/div/div/span"))
+	        ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("/html/body/div[1]/div[1]/div/ul/a[9]/div/div/div/ul/a/li/div/div/div/span"))
 	    );
 
 	    System.out.println("Nombre de sous-menus : " + submenus.size());
