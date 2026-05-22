@@ -118,25 +118,23 @@ public class AjouterRepasPage {
 
 	    submenuTitle = submenuTitle.replace("<", "").replace(">", "").trim();
 
+	    // ✅ Cherche par texte au lieu du XPath absolu
 	    List<WebElement> submenus = wait.until(
-	        ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("/html/body/div[1]/div[1]/div/ul/a[9]/div/div/div/ul/a/li/div/div/div/span"))
-	    );
+	    	    ExpectedConditions.visibilityOfAllElementsLocatedBy(
+	    	        By.xpath("//*[contains(text(),'" + submenuTitle + "')]")
+	    	    )
+	    	);
 
 	    System.out.println("Nombre de sous-menus : " + submenus.size());
 
 	    for (WebElement subm : submenus) {
-
 	        System.out.println(">>> Sous-menu trouvé : [" + subm.getText() + "]");
 
 	        if (subm.getText().trim().equalsIgnoreCase(submenuTitle)) {
-
 	            ((JavascriptExecutor) Config.driver)
 	                .executeScript("arguments[0].scrollIntoView(true);", subm);
-
 	            wait.until(ExpectedConditions.elementToBeClickable(subm));
-
 	            subm.click();
-
 	            System.out.println("✅ Sous-menu cliqué : " + submenuTitle);
 	            return;
 	        }
