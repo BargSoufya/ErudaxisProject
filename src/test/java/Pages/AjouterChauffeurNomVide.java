@@ -42,15 +42,32 @@ public class AjouterChauffeurNomVide {
 	}
 	
 	
-	public void saisirlesChamps(String prenom,String email, String cin, String PhoneNumber, String adre) {
-		PrenomChauffeur.sendKeys(prenom);
-		EmailChauff.sendKeys(email);
-		CINChauff.sendKeys(String.valueOf(cin));
-		TelChauff.sendKeys(String.valueOf(PhoneNumber));
-		AdresseChauff.sendKeys(adre);
-		
-		
-	}
+	public void saisirlesChamps(String prenom, String nom, String email, 
+            String cin, String phoneNumber, String adresse) {
+WebDriverWait wait = new WebDriverWait(Config.driver, Duration.ofSeconds(10));
+
+wait.until(ExpectedConditions.elementToBeClickable(PrenomChauffeur));
+PrenomChauffeur.clear();
+PrenomChauffeur.sendKeys(prenom);
+
+NomChauffeur.clear();
+NomChauffeur.sendKeys(nom); // ✅ vide si nom = ""
+
+EmailChauff.clear();
+EmailChauff.sendKeys(email);
+
+CINChauff.clear();
+CINChauff.sendKeys(cin);
+
+TelChauff.clear();
+TelChauff.sendKeys(phoneNumber);
+
+AdresseChauff.clear();
+AdresseChauff.sendKeys(adresse);
+
+System.out.println(">>> ✅ Champs saisis");
+}
+
 	
 	public void NomVide( ) {
 		NomChauffeur.sendKeys("");
