@@ -9,13 +9,16 @@ Feature: Ajouter un nouveau chauffeur sans Nom
 	When l admin clique sur le bouton ajouter un chauffeur le formulaire de chauffeur s affiche 
 	
 	Scenario: Ajouter un chauffeur avec Nom vide 
-	Then  l admin  laisse le champ "Nom " vide 
+	Then  l admin  laisse le champ Nom " " 
 	Then l admin sasit le reste des infortmations :
-	|Prenom | Maxime       |
+	|Prénom | Maxime|
 	|Nom |        |
-	|Email |  maxime01@gmail.com      |
+	|Email | maxime01@gmail.com|
 	|CIN | 0741842518 |
-	|Nume de Telephone |  55248415|
-	|Adresse |     Paris05  |
-	|Pays |    France    |
-	|Ville |     Paris   |
+	|Flag Pays|+ 33|
+	|Numéro de Téléphone |06248415|
+	|Adresse| Paris05  |
+	|Pays | France    |
+	|Ville | Paris   |
+	
+	Then l 'admin clique sur le bouton creer le chauffeur

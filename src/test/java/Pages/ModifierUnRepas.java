@@ -1,0 +1,235 @@
+package Pages;
+
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import Helper.Config;
+
+public class ModifierUnRepas {
+
+	@FindBy(css="#tabpanel-0 > div.MuiBox-root.css-1hdbc19 > div:nth-child(1) > div.MuiCollapse-root.MuiCollapse-vertical.MuiCollapse-entered.css-c4sutr > div > div > div > div > div > div > div > div.MuiBox-root.css-15bqc0t > button > svg")
+	WebElement Menurepas;
+	@FindBy(css="body > div.MuiPopover-root.MuiMenu-root.MuiModal-root.css-1sucic7 > div.MuiPaper-root.MuiMenu-paper.MuiPaper-elevation.MuiPaper-rounded.MuiPaper-elevation8.MuiPopover-paper.css-1mznjfp > ul > li.MuiButtonBase-root.MuiMenuItem-root.MuiMenuItem-gutters.MuiMenuItem-root.MuiMenuItem-gutters.css-1y9dian")
+	WebElement modifier_bt;
+	@FindBy(xpath="/html/body/div[3]/div[3]/div/div[2]/div/div[1]/div/input")
+	WebElement Nomrepas;
+	@FindBy(css="body > div.MuiDialog-root.MuiModal-root.css-10pksy > div.MuiDialog-container.MuiDialog-scrollPaper.css-16u656j > div > div.MuiDialogContent-root.css-12of8pw > div > div:nth-child(2) > div > div > div")
+	WebElement catg;
+	@FindBy(xpath="/html/body/div[3]/div[3]/div/div[2]/div/div[3]/div/button/span")
+	WebElement emoji;
+	@FindBy(xpath="/html/body/div[3]/div[3]/div/div[2]/div/div[4]/div/input")
+	WebElement date;
+	@FindBy(css="body > div.MuiDialog-root.MuiModal-root.css-10pksy > div.MuiDialog-container.MuiDialog-scrollPaper.css-16u656j > div > div.MuiDialogContent-root.css-12of8pw > div > div.MuiGrid-root.MuiGrid-item.MuiGrid-grid-xs-12.css-1uo6sxl > div > textarea:nth-child(1)")
+	WebElement description;
+	@FindBy(xpath="/html/body/div[3]/div[3]/div/div[2]/div/div[6]/div/input")
+	WebElement prix;
+	@FindBy(xpath="/html/body/div[3]/div[3]/div/div[2]/div/div[7]/div/input")
+	WebElement qte;
+	@FindBy(css="body > div.MuiDialog-root.MuiModal-root.css-10pksy > div.MuiDialog-container.MuiDialog-scrollPaper.css-16u656j > div > div.MuiDialogActions-root.MuiDialogActions-spacing.css-1vpr2yz > button.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-containedPrimary.MuiButton-sizeMedium.MuiButton-containedSizeMedium.MuiButton-root.MuiButton-contained.MuiButton-containedPrimary.MuiButton-sizeMedium.MuiButton-containedSizeMedium.css-1ljwhj3")
+	WebElement modif_bt;
+	@FindBy(xpath="/html/body/div[3]/div[3]/div/div[3]/button[1]")
+	WebElement anuler_bt;
+	
+	
+	public ModifierUnRepas () {
+		PageFactory.initElements(Config.driver,this);
+	}
+	
+	public void Menu()  {
+		
+	Menurepas.click();
+		
+	}
+	public void choixModif() {
+		modifier_bt.click();
+	}
+	
+	public void ModifierDate(String date1) {
+	    JavascriptExecutor js = (JavascriptExecutor) Config.driver;
+	    Actions act = new Actions(Config.driver);
+
+	    // ✅ Vérification null et format
+	    if (date1 == null || date1.trim().isEmpty()) {
+	        System.out.println(">>> ⚠️ Date vide — ignorée");
+	        return;
+	    }
+
+	    if (!date1.contains("/")) {
+	        System.out.println(">>> ⚠️ Format incorrect : " + date1);
+	        return;
+	    }
+
+	    String[] parts = date1.split("/");
+
+	    // ✅ Vérifier qu'on a bien 3 parties
+	    if (parts.length < 3) {
+	        System.out.println(">>> ⚠️ Date incomplète : " + date1);
+	        return;
+	    }
+
+	    String jour  = parts[0]; // 28
+	    String mois  = parts[1]; // 06
+	    String annee = parts[2]; // 2026
+
+	    System.out.println(">>> Jour=" + jour + " Mois=" + mois + " Année=" + annee);
+
+	    // ✅ Attendre que le champ soit cliquable
+	    WebDriverWait wait = new WebDriverWait(Config.driver, Duration.ofSeconds(10));
+	    wait.until(ExpectedConditions.elementToBeClickable(date));
+
+	    // ✅ Cliquer sur le champ
+	    act.moveToElement(date).click().perform();
+	    try { Thread.sleep(500); } catch (Exception e) {}
+
+	    // ✅ Vider et saisir la date complète directement
+	    date.sendKeys(org.openqa.selenium.Keys.CONTROL + "a");
+	    date.sendKeys(org.openqa.selenium.Keys.DELETE);
+
+	    // ✅ Saisir dans l'ordre MM/DD/YYYY (format React)
+	    date.sendKeys(mois);
+	    date.sendKeys(jour);
+	    date.sendKeys(annee);
+
+	    // ✅ Confirmer avec TAB
+	    date.sendKeys(org.openqa.selenium.Keys.TAB);
+	    try { Thread.sleep(500); } catch (Exception e) {}
+
+	    System.out.println(">>> ✅ Date saisie : " + date1);
+	}
+	
+	public void selectionnerCatg(String cat) {
+	    WebDriverWait wait = new WebDriverWait(Config.driver, Duration.ofSeconds(20));
+	    JavascriptExecutor js = (JavascriptExecutor) Config.driver;
+	    Actions act = new Actions(Config.driver);
+
+	    // 1. S'assurer que la grille emoji est bien fermée
+	    try {
+	        wait.until(
+	            ExpectedConditions.invisibilityOfElementLocated(
+	                By.cssSelector("button.MuiButton-textPrimary")
+	            )
+	        );
+	    } catch (Exception e) {
+	        // Fermer par Escape si toujours ouverte
+	        act.sendKeys(org.openqa.selenium.Keys.ESCAPE).perform();
+	        
+	    }
+
+	    // 2. Fermer le backdrop MUI si présent
+	    try {
+	        WebElement backdrop = Config.driver.findElement(
+	            By.cssSelector(".MuiBackdrop-root")
+	        );
+	        if (backdrop.isDisplayed()) {
+	            backdrop.click();
+	            wait.until(
+	                ExpectedConditions.invisibilityOfElementLocated(
+	                    By.cssSelector(".MuiBackdrop-root")
+	                )
+	            );
+	        }
+	    } catch (Exception e) {
+	        // Pas de backdrop, on continue
+	    }
+
+	    // 3. Cliquer sur le select MUI
+	    WebElement select = wait.until(
+	        ExpectedConditions.elementToBeClickable(
+	            By.cssSelector(".MuiSelect-select")
+	        )
+	    );
+	    act.scrollToElement(select).moveToElement(select).click().perform();
+
+	    // 4. Attendre que le listbox soit visible
+	    wait.until(
+	        ExpectedConditions.visibilityOfElementLocated(
+	            By.cssSelector("ul[role='listbox']")
+	        )
+	    );
+
+	    // 5. Mapper le texte
+	    String optionText;
+	    switch (cat.toLowerCase().trim()) {
+	        case "petit dejeuner":
+	        case "petit déjeuner":
+	            optionText = "Petit-déjeuner";
+	            break;
+	        case "gouter matin":
+	        case "goûter matin":
+	        case "gouter du matin":
+	        case "goûter du matin":
+	            optionText = "Goûter matin";
+	            break;
+	        case "dejeuner":
+	        case "déjeuner":
+	            optionText = "Déjeuner";
+	            break;
+	        case "gouter l'apres midi":
+	        case "gouter l'après midi":
+	        case "goûter l'apres midi":
+	        case "goûter l'après midi":
+	        case "goûter l'après-midi":
+	            optionText = "Goûter l'après-midi";
+	            break;
+	        case "diner":
+	        case "dîner":
+	            optionText = "Dîner";
+	            break;
+	        default:
+	            throw new IllegalArgumentException("Option inconnue : " + cat);
+	    }
+
+	    // 6. Cliquer sur l'option
+	    WebElement option = wait.until(
+	        ExpectedConditions.elementToBeClickable(
+	            By.xpath("//ul[@role='listbox']//li[normalize-space(text())='" + optionText + "']")
+	        )
+	    );
+	    js.executeScript("arguments[0].click();", option);
+	    System.out.println("Catégorie sélectionnée : " + cat);
+	    act.moveToElement(Nomrepas).click().perform();
+	    Config.attente(1);
+	}
+	public void modif() {
+		modif_bt.click();
+	}
+
+	public void sasirdescription ( String text ) {
+		description.clear();
+		
+		Actions act = new Actions (Config.driver);
+		
+		act.moveToElement(description).click().keyDown(org.openqa.selenium.Keys.CONTROL)
+	       .sendKeys("a")
+	       .keyUp(org.openqa.selenium.Keys.CONTROL)
+	       .sendKeys(org.openqa.selenium.Keys.BACK_SPACE)
+	       .sendKeys(text)
+	       .perform();
+
+	}
+	
+	public void ajouterRepasavecleschamps(String Nom,String date1,double price, int quantite) {
+		
+		Nomrepas.clear();
+		Nomrepas.sendKeys(Nom);
+		date.sendKeys(date1);
+		prix.clear();
+		prix.sendKeys(String.valueOf(price));
+		qte.clear();
+		qte.sendKeys(String.valueOf(quantite));
+		
+		
+		
+		
+	}
+	
+}

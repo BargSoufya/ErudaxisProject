@@ -9,8 +9,8 @@ public class AjouterChauffeurNomVideStepDef {
 
 	AjouterChauffeurNomVide chauff= new AjouterChauffeurNomVide();
 	
-	@Then("l admin  laisse le champ {string} vide")
-	public void l_admin_laisse_le_champ_vide(String string) {
+	@Then("l admin  laisse le champ Nom {string}")
+	public void l_admin_laisse_le_champ_nom(String string) {
 	   chauff.NomVide();
 	}
 	@Then("l admin sasit le reste des infortmations :")
@@ -18,19 +18,31 @@ public class AjouterChauffeurNomVideStepDef {
 		Map<String, String> data = dataTable.asMap(String.class, String.class);
 	
 		String prenom       = data.get("Prénom");
-	    String nom          = data.get("Nom");
+	    String nom          = "";
 	    String email        = data.get("Email");
 	    String cin          = data.get("CIN");
-	    String phoneNumber  = data.get("Numéro de téléphone");
+	    String phoneNumber  = data.get("Numéro de Téléphone");
 	    String adresse      = data.get("Adresse");
 	    String pays         = data.get("Pays");
 	    String ville        = data.get("Ville");
+	   
 
-	    chauff.saisirlesChamps(prenom, "",email, cin, phoneNumber, adresse);
+	 //   chauff.saisirlesChamps(prenom, "",email, cin, phoneNumber, adresse);
+	    chauff.saisirlesChamps(prenom, "", email, cin, phoneNumber, adresse);
+
 	    chauff.selectionnerPays(pays);	
-	    chauff.selectionnerVille(ville);
+	    chauff.selectionnerVille("Paris");
+	    chauff.selectionnerIndicatif();
+	    
+	   
+	    
 	
 	}
+	@Then("l 'admin clique sur le bouton creer le chauffeur")
+	public void l_admin_clique_sur_le_bouton_creer_le_chauffeur() {
+		chauff.clickOncreerbt();
+	}
+
 
 
 
