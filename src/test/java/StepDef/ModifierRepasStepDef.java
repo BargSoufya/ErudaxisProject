@@ -1,6 +1,7 @@
 package StepDef;
 
 import java.util.Map;
+import java.util.concurrent.TimeoutException;
 
 import Helper.Config;
 import Pages.AjouterRepasAvecNomExistantPage;
@@ -22,7 +23,7 @@ public class ModifierRepasStepDef {
 	}
 	
 	@When("l admin modifie les informations suivantes :")
-	public void l_admin_modifie_les_informations_suivantes(io.cucumber.datatable.DataTable dataTable) {
+	public void l_admin_modifie_les_informations_suivantes(io.cucumber.datatable.DataTable dataTable) throws TimeoutException {
 	   
 	    Map<String, String> data = dataTable.asMap(String.class, String.class);
 	    

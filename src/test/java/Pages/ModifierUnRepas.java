@@ -1,6 +1,7 @@
 package Pages;
 
 import java.time.Duration;
+import java.util.concurrent.TimeoutException;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -26,7 +27,7 @@ public class ModifierUnRepas {
 	WebElement catg;
 	@FindBy(xpath="/html/body/div[3]/div[3]/div/div[2]/div/div[3]/div/button/span")
 	WebElement emoji;
-	@FindBy(xpath="/html/body/div[3]/div[3]/div/div[2]/div/div[4]/div/input")
+	@FindBy(css="body > div.MuiDialog-root.MuiModal-root.css-10pksy > div.MuiDialog-container.MuiDialog-scrollPaper.css-16u656j > div > div.MuiDialogContent-root.css-12of8pw > div > div:nth-child(4) > div > input")
 	WebElement date;
 	@FindBy(css="body > div.MuiDialog-root.MuiModal-root.css-10pksy > div.MuiDialog-container.MuiDialog-scrollPaper.css-16u656j > div > div.MuiDialogContent-root.css-12of8pw > div > div.MuiGrid-root.MuiGrid-item.MuiGrid-grid-xs-12.css-1uo6sxl > div > textarea:nth-child(1)")
 	WebElement description;
@@ -53,60 +54,52 @@ public class ModifierUnRepas {
 		modifier_bt.click();
 	}
 	
-	public void ModifierDate(String date1) {
-	    JavascriptExecutor js = (JavascriptExecutor) Config.driver;
-	    Actions act = new Actions(Config.driver);
-
-	    // ✅ Vérification null et format
-	    if (date1 == null || date1.trim().isEmpty()) {
-	        System.out.println(">>> ⚠️ Date vide — ignorée");
-	        return;
-	    }
-
-	    if (!date1.contains("/")) {
-	        System.out.println(">>> ⚠️ Format incorrect : " + date1);
-	        return;
-	    }
-
-	    String[] parts = date1.split("/");
-
-	    // ✅ Vérifier qu'on a bien 3 parties
-	    if (parts.length < 3) {
-	        System.out.println(">>> ⚠️ Date incomplète : " + date1);
-	        return;
-	    }
-
-	    String jour  = parts[0]; // 28
-	    String mois  = parts[1]; // 06
-	    String annee = parts[2]; // 2026
-
-	    System.out.println(">>> Jour=" + jour + " Mois=" + mois + " Année=" + annee);
-
-	    // ✅ Attendre que le champ soit cliquable
-	    WebDriverWait wait = new WebDriverWait(Config.driver, Duration.ofSeconds(10));
-	    wait.until(ExpectedConditions.elementToBeClickable(date));
-
-	    // ✅ Cliquer sur le champ
-	    act.moveToElement(date).click().perform();
-	    try { Thread.sleep(500); } catch (Exception e) {}
-
-	    // ✅ Vider et saisir la date complète directement
-	    date.sendKeys(org.openqa.selenium.Keys.CONTROL + "a");
-	    date.sendKeys(org.openqa.selenium.Keys.DELETE);
-
-	    // ✅ Saisir dans l'ordre MM/DD/YYYY (format React)
-	    date.sendKeys(mois);
-	    date.sendKeys(jour);
-	    date.sendKeys(annee);
-
-	    // ✅ Confirmer avec TAB
-	    date.sendKeys(org.openqa.selenium.Keys.TAB);
-	    try { Thread.sleep(500); } catch (Exception e) {}
-
-	    System.out.println(">>> ✅ Date saisie : " + date1);
-	}
-	
-	public void selectionnerCatg(String cat) {
+    public void ModifierDate(String date) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+        
+        // Attendre que le modal soit chargé
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        
+        WebElement dateInput = null;
+        
+        // Essayer différents sélecteurs
+        String[] selectors = {
+            "input[type='date']",
+            "input[placeholder*='Date']",
+            "input[name*='date']",
+            "input[id*='date']",
+            "//label[contains(text(), 'Date')]/following::input[1]"
+        };
+        
+        for (String selector : selectors) {
+            try {
+                if (selector.startsWith("//")) {
+                    dateInput = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(selector)));
+                } else {
+                    dateInput = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(selector)));
+                }
+                if (dateInput != null && dateInput.isDisplayed()) {
+                    System.out.println("Champ date trouvé avec: " + selector);
+                    break;
+                }
+            } catch (Exception e) {
+                // Continuer
+            }
+        }
+        
+        if (dateInput == null) {
+            throw new RuntimeException("Impossible de trouver le champ date");
+        }
+        
+        dateInput.clear();
+        dateInput.sendKeys(date);
+        System.out.println("Date modifiée: " + date);
+    }
+	public void selectionnerCatg(String cat) throws InterruptedException {
 	    WebDriverWait wait = new WebDriverWait(Config.driver, Duration.ofSeconds(20));
 	    JavascriptExecutor js = (JavascriptExecutor) Config.driver;
 	    Actions act = new Actions(Config.driver);
@@ -119,7 +112,9 @@ public class ModifierUnRepas {
 	            )
 	        );
 	    } catch (Exception e) {
-	        // Fermer par Escape si toujours ouverte
+	    	Thread.sleep(1000);
+
+	    	
 	        act.sendKeys(org.openqa.selenium.Keys.ESCAPE).perform();
 	        
 	    }
@@ -230,6 +225,23 @@ public class ModifierUnRepas {
 		
 		
 		
+	}
+	private void modifierChamp(String nomChamp, String valeur) throws TimeoutException {
+	    WebDriverWait wait = new WebDriverWait(Config.driver, Duration.ofSeconds(10));
+	    
+	    // Construire un XPath dynamique basé sur le nom du champ
+	    String xpath = String.format(
+	        "//label[contains(text(), '%s')]/following::input[1] | " +
+	        "//div[contains(@class, 'field')]//label[contains(text(), '%s')]/following-sibling::div//input | " +
+	        "//input[@placeholder='%s'] | " +
+	        "//input[@name='%s']",
+	        nomChamp, nomChamp, nomChamp, nomChamp.toLowerCase()
+	    );
+	    
+	    WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(xpath)));
+		element.clear();
+		element.sendKeys(valeur);
+		System.out.println("Champ '" + nomChamp + "' modifié avec : " + valeur);
 	}
 	
 }

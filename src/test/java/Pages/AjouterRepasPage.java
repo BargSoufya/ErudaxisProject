@@ -71,6 +71,7 @@ public class AjouterRepasPage {
 	   }
 	
 	  } catch (Exception e) {
+		  
 	       throw new RuntimeException("❌ Erreur lors du clic sur le menu : " + menuTitle, e);
 	    }
 	
