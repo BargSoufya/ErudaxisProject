@@ -55,7 +55,7 @@ public class ModifierUnRepas {
 	}
 	
     public void ModifierDate(String date) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+        WebDriverWait wait = new WebDriverWait(Config.driver, Duration.ofSeconds(15));
         
         // Attendre que le modal soit chargé
         try {
