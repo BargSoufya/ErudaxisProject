@@ -36,7 +36,8 @@ public class AjouterUnNouveauBusStepDef {
 	@Then("la page bus et chauffeurs s affiche {string}")
 	public void la_page_bus_et_chauffeurs_s_affiche(String text) {
 		AjouterUnNouveauBusPage bus= new AjouterUnNouveauBusPage();
-		bus.verifAffichagePage(text);
+		// bus.verifAffichagePage(text);
+		   bus.verifAffichagePage(text);
 	}
 	@Then("le formulaire d ajout d un bus s'affiche")
 public void le_formulaire_d_ajout_d_un_bus_s_affiche() {
