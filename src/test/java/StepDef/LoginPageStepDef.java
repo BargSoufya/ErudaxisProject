@@ -5,6 +5,7 @@ import java.time.Duration;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.devtools.v128.page.Page;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -65,11 +66,6 @@ public void admin_est_sur_la_page_d_authentification() {
 
 	}
 	
-	
-	
-	
-	
 }
 	
-
 
