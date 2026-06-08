@@ -29,14 +29,14 @@ public class LoginPageStepDef {
 
 	@Given("admin est sur la page d authentification")
 public void admin_est_sur_la_page_d_authentification() {
-    // Add headless mode for CI/CD environments
-    ChromeOptions options = new ChromeOptions();
-    options.addArguments("--headless=new");
-    options.addArguments("--no-sandbox");
-    options.addArguments("--disable-dev-shm-usage");
-    options.addArguments("--disable-gpu");
+    // // Add headless mode for CI/CD environments
+    // ChromeOptions options = new ChromeOptions();
+    // options.addArguments("--headless=new");
+    // options.addArguments("--no-sandbox");
+    // options.addArguments("--disable-dev-shm-usage");
+    // options.addArguments("--disable-gpu");
     
-    Config.driver = new ChromeDriver(options);
+    // Config.driver = new ChromeDriver(options);
     Config.Maximaize();
     String url = "https://staging.erudaxis.com/";
     Config.driver.get(url);
