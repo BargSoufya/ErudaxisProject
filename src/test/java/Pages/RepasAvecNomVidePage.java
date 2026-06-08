@@ -255,20 +255,14 @@ public class RepasAvecNomVidePage {
 	//}
 	
 		public void annulerlajout() {
-		    WebDriverWait wait = new WebDriverWait(Config.driver, Duration.ofSeconds(15));
-		    Actions act = new Actions(Config.driver);
 
-		    wait.until(ExpectedConditions.elementToBeClickable(annuler));
-		    //act.moveToElement(annuler).click().perform();
-			// ✅ Re-find the element right before using it
-			WebDriverWait wait = new WebDriverWait(Config.driver, Duration.ofSeconds(10));
-			WebElement freshElement = wait.until(
- 			   ExpectedConditions.elementToBeClickable(
-       			 By.cssSelector("your-selector-here")
-    )
-);
-new Actions(Config.driver).moveToElement(freshElement).click().perform();
-		
-		}
+    WebDriverWait wait = new WebDriverWait(Config.driver, Duration.ofSeconds(15));
+    Actions act = new Actions(Config.driver);
 
+    WebElement annulerBtn = wait.until(
+        ExpectedConditions.elementToBeClickable(annuler)
+    );
+
+    act.moveToElement(annulerBtn).click().perform();
+}
 }
