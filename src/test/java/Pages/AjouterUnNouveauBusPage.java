@@ -125,21 +125,31 @@ public class AjouterUnNouveauBusPage {
  //            )
  //    );
 
+// 	public void verifAffichagePage(String titre) {
+
+//     WebDriverWait wait =
+//             new WebDriverWait(Config.driver, Duration.ofSeconds(30));
+
+//     System.out.println("URL : " + Config.driver.getCurrentUrl());
+//     System.out.println("Titre : " + Config.driver.getTitle());
+
+//     By locator = By.xpath("//*[contains(normalize-space(),'" + titre + "')]");
+
+//     WebElement element = wait.until(
+//             ExpectedConditions.visibilityOfElementLocated(locator)
+//     );
+
+//     Assert.assertTrue(element.isDisplayed());
+// }
 	public void verifAffichagePage(String titre) {
 
-    WebDriverWait wait =
-            new WebDriverWait(Config.driver, Duration.ofSeconds(30));
+    WebDriverWait wait = new WebDriverWait(Config.driver, Duration.ofSeconds(30));
 
-    System.out.println("URL : " + Config.driver.getCurrentUrl());
-    System.out.println("Titre : " + Config.driver.getTitle());
+    By locator = By.xpath("//*[contains(.,'" + titre + "')]");
 
-    By locator = By.xpath("//*[contains(normalize-space(),'" + titre + "')]");
+    wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
 
-    WebElement element = wait.until(
-            ExpectedConditions.visibilityOfElementLocated(locator)
-    );
-
-    Assert.assertTrue(element.isDisplayed());
+    System.out.println("Page affichée avec titre : " + titre);
 }
 	public void ClickOnbtnBus() {
 		WebDriverWait wait = new WebDriverWait(Config.driver, Duration.ofSeconds(20));
