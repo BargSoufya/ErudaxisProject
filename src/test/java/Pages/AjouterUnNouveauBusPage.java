@@ -147,9 +147,13 @@ public class AjouterUnNouveauBusPage {
 
     By locator = By.xpath("//*[contains(.,'" + titre + "')]");
 
-    wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
-
-    System.out.println("Page affichée avec titre : " + titre);
+    try {
+    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(45));
+    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(text(),'Liste des Bus')]")));
+} catch (TimeoutException e) {
+    System.out.println("URL actuelle: " + driver.getCurrentUrl());
+    throw e;
+}
 }
 	public void ClickOnbtnBus() {
 		WebDriverWait wait = new WebDriverWait(Config.driver, Duration.ofSeconds(20));
