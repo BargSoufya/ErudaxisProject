@@ -48,7 +48,7 @@ public class ModifierUnRepas {
 	public void Menu()  {
 		
 	//Menurepas.click();
-		WebDriverWait wait = new WebDriverWait(Configdriver, Duration.ofSeconds(20));
+		WebDriverWait wait = new WebDriverWait(Config.driver, Duration.ofSeconds(20));
 
 wait.until(ExpectedConditions.elementToBeClickable(
     By.xpath("//div[@role='tabpanel']//button//*[name()='svg']")
