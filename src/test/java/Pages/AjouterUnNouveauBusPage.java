@@ -21,7 +21,8 @@ public class AjouterUnNouveauBusPage {
 	List <WebElement> GestionBusMenu;
 	@FindBy(xpath="/html/body/div[1]/div[1]/div/ul/a[9]/div/div/div/ul[1]/a/li/div/div/div/span")
 	List <WebElement> SubMenus;
-	@FindBy(css="#root > div:nth-child(2) > div > div > div > div > div.MuiBox-root.css-1mddhvy > h5")
+//@FindBy(css="#root > div:nth-child(2) > div > div > div > div > div.MuiBox-root.css-1mddhvy > h5")
+	@FindBy(xpath = "//h5[contains(text(),'Liste des Bus')]")
 	WebElement verif;
 	@FindBy (xpath="/html/body/div[1]/div[2]/div/div/div/div/div[2]/button")
 	WebElement AjouterBus_btn;
