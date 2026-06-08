@@ -67,7 +67,7 @@ public class Config {
     // ── Navigate directly to a URL and wait for page to load
     public static void navigateTo(String url) {
         driver.get(url);
-        attent(20);
+        attente(20);
         System.out.println("Navigated to: " + driver.getCurrentUrl());
     }
 
