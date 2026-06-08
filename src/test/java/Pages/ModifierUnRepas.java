@@ -45,46 +45,26 @@ public class ModifierUnRepas {
 		PageFactory.initElements(Config.driver,this);
 	}
 	
-// 	public void Menu()  {
+	public void Menu()  {
 		
-// 	//Menurepas.click();
-// 		WebDriverWait wait = new WebDriverWait(Config.driver, Duration.ofSeconds(20));
+	//Menurepas.click();
+		WebDriverWait wait = new WebDriverWait(Config.driver, Duration.ofSeconds(20));
 
-// // wait.until(ExpectedConditions.elementToBeClickable(
-// //     By.xpath("//div[@role='tabpanel']//button//*[name()='svg']")
-// // )).click();
-// 		WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(
-//     By.xpath("//div[@role='tabpanel']//button")));
-// ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
-// wait.until(ExpectedConditions.elementToBeClickable(element));
-// try {
-//     element.click();
-// } catch (Exception e) {
-//     ((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
-// }
-		
-// 	}
-	public void Menu() {
-        WebDriverWait wait = new WebDriverWait(Config.driver, Duration.ofSeconds(30));  // CORRIGÉ: utiliser Config.driver
-        
-        // Wait for element to be present first
-        WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(
-            By.xpath("//div[@role='tabpanel']//button")));
-        
-        // Scroll to element
-        ((JavascriptExecutor) Config.driver).executeScript("arguments[0].scrollIntoView(true);", element);  // CORRIGÉ
-        
-        // Wait for clickable
-        wait.until(ExpectedConditions.elementToBeClickable(element));
-        
-        // Try JavaScript click if normal click fails
-        try {
-            element.click();
-        } catch (Exception e) {
-            ((JavascriptExecutor) Config.driver).executeScript("arguments[0].click();", element);  // CORRIGÉ
-        }
-    }
+// wait.until(ExpectedConditions.elementToBeClickable(
+//     By.xpath("//div[@role='tabpanel']//button//*[name()='svg']")
+// )).click();
+		WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(
+    By.xpath("//div[@role='tabpanel']//button")));
+((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
+wait.until(ExpectedConditions.elementToBeClickable(element));
+try {
+    element.click();
+} catch (Exception e) {
+    ((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
 }
+		
+	}
+	
 	public void choixModif() {
 		modifier_bt.click();
 	}
