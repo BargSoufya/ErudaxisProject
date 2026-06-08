@@ -50,9 +50,18 @@ public class ModifierUnRepas {
 	//Menurepas.click();
 		WebDriverWait wait = new WebDriverWait(Config.driver, Duration.ofSeconds(20));
 
-wait.until(ExpectedConditions.elementToBeClickable(
-    By.xpath("//div[@role='tabpanel']//button//*[name()='svg']")
-)).click();
+// wait.until(ExpectedConditions.elementToBeClickable(
+//     By.xpath("//div[@role='tabpanel']//button//*[name()='svg']")
+// )).click();
+		WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(
+    By.xpath("//div[@role='tabpanel']//button")));
+((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
+wait.until(ExpectedConditions.elementToBeClickable(element));
+try {
+    element.click();
+} catch (Exception e) {
+    ((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
+}
 		
 	}
 	public void choixModif() {
