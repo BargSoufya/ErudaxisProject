@@ -18,7 +18,7 @@ public class AjouterunRepasAvecNomVideStepDef {
 	@Given("l'admin est authentifié par l'email {string} et le mot de passe {string}")
 	public void l_admin_est_authentifié_avec_l_email_et_le_mot_de_passe(String email, String pwd) {
 	//	Config.driver = new ChromeDriver ();
-Config.Maximaize();
+		Config.Maximaize();
 	   String url="https://staging.erudaxis.com/";
 	   Config.driver.get(url);
 	   LoginPage logp=new LoginPage();
