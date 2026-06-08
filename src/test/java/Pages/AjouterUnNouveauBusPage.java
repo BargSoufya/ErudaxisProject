@@ -133,11 +133,13 @@ public class AjouterUnNouveauBusPage {
     System.out.println("URL : " + Config.driver.getCurrentUrl());
     System.out.println("Titre : " + Config.driver.getTitle());
 
-    wait.until(ExpectedConditions.visibilityOfElementLocated(
-            By.xpath("//*[contains(normalize-space(),'" + titre + "')]")
-    ));
-}
-    Assert.assertTrue(titre.isDisplayed());
+    By locator = By.xpath("//*[contains(normalize-space(),'" + titre + "')]");
+
+    WebElement element = wait.until(
+            ExpectedConditions.visibilityOfElementLocated(locator)
+    );
+
+    Assert.assertTrue(element.isDisplayed());
 }
 	public void ClickOnbtnBus() {
 		WebDriverWait wait = new WebDriverWait(Config.driver, Duration.ofSeconds(20));
