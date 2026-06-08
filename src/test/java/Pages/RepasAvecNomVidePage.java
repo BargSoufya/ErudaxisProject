@@ -261,10 +261,10 @@ public class RepasAvecNomVidePage {
 		    wait.until(ExpectedConditions.elementToBeClickable(annuler));
 		    //act.moveToElement(annuler).click().perform();
 			// ✅ Re-find the element right before using it
-WebDriverWait wait = new WebDriverWait(Config.driver, Duration.ofSeconds(10));
-WebElement freshElement = wait.until(
-    ExpectedConditions.elementToBeClickable(
-        By.cssSelector("your-selector-here")
+			WebDriverWait wait = new WebDriverWait(Config.driver, Duration.ofSeconds(10));
+			WebElement freshElement = wait.until(
+ 			   ExpectedConditions.elementToBeClickable(
+       			 By.cssSelector("your-selector-here")
     )
 );
 new Actions(Config.driver).moveToElement(freshElement).click().perform();
