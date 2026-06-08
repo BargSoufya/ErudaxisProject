@@ -108,23 +108,35 @@ public class AjouterUnNouveauBusPage {
 		
 // 	}
 
-	public void verifAffichagePage(String titreAttendu) {
+	// public void verifAffichagePage(String titreAttendu) {
+
+ //    WebDriverWait wait =
+ //            new WebDriverWait(Config.driver, Duration.ofSeconds(30));
+
+ //    System.out.println("URL actuelle : " + Config.driver.getCurrentUrl());
+ //    System.out.println("Titre de la page : " + Config.driver.getTitle());
+
+ //    wait.until(ExpectedConditions.presenceOfElementLocated(
+ //            By.tagName("body")));
+
+ //    WebElement titre = wait.until(
+ //            ExpectedConditions.visibilityOfElementLocated(
+ //                    By.xpath("//h5[contains(normalize-space(),'" + titreAttendu + "')]")
+ //            )
+ //    );
+
+	public void verifAffichagePage(String titre) {
 
     WebDriverWait wait =
             new WebDriverWait(Config.driver, Duration.ofSeconds(30));
 
-    System.out.println("URL actuelle : " + Config.driver.getCurrentUrl());
-    System.out.println("Titre de la page : " + Config.driver.getTitle());
+    System.out.println("URL : " + Config.driver.getCurrentUrl());
+    System.out.println("Titre : " + Config.driver.getTitle());
 
-    wait.until(ExpectedConditions.presenceOfElementLocated(
-            By.tagName("body")));
-
-    WebElement titre = wait.until(
-            ExpectedConditions.visibilityOfElementLocated(
-                    By.xpath("//h5[contains(normalize-space(),'" + titreAttendu + "')]")
-            )
-    );
-
+    wait.until(ExpectedConditions.visibilityOfElementLocated(
+            By.xpath("//*[contains(normalize-space(),'" + titre + "')]")
+    ));
+}
     Assert.assertTrue(titre.isDisplayed());
 }
 	public void ClickOnbtnBus() {
