@@ -100,7 +100,8 @@ public class AjouterUnNouveauBusPage {
 	    // String textActual = verif.getText();
 	    // Assert.assertEquals(text, textActual); 
 		WebDriverWait wait = new WebDriverWait(Config.driver, Duration.ofSeconds(30));
-
+System.out.println(Config.driver.getCurrentUrl());
+System.out.println(Config.driver.getTitle());
 wait.until(ExpectedConditions.visibilityOfElementLocated(
     By.xpath("//h5[contains(normalize-space(),'Liste des Bus')]")
 ));
