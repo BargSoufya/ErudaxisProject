@@ -94,20 +94,39 @@ public class AjouterUnNouveauBusPage {
 	
 	
 	}
-	public void verifAffichagePage(String text) {
-		//WebDriverWait wait = new WebDriverWait(Config.driver, Duration.ofSeconds(20));
-	    // wait.until(ExpectedConditions.visibilityOf(verif));
-	    // String textActual = verif.getText();
-	    // Assert.assertEquals(text, textActual); 
-		WebDriverWait wait = new WebDriverWait(Config.driver, Duration.ofSeconds(30));
-System.out.println(Config.driver.getCurrentUrl());
-System.out.println(Config.driver.getTitle());
-wait.until(ExpectedConditions.visibilityOfElementLocated(
-    By.xpath("//h5[contains(normalize-space(),'Liste des Bus')]")
-));
+// 	public void verifAffichagePage(String text) {
+// 		//WebDriverWait wait = new WebDriverWait(Config.driver, Duration.ofSeconds(20));
+// 	    // wait.until(ExpectedConditions.visibilityOf(verif));
+// 	    // String textActual = verif.getText();
+// 	    // Assert.assertEquals(text, textActual); 
+// 		WebDriverWait wait = new WebDriverWait(Config.driver, Duration.ofSeconds(30));
+// System.out.println(Config.driver.getCurrentUrl());
+// System.out.println(Config.driver.getTitle());
+// wait.until(ExpectedConditions.visibilityOfElementLocated(
+//     By.xpath("//h5[contains(normalize-space(),'Liste des Bus')]")
+// ));
 		
-	}
-	
+// 	}
+
+	public void verifAffichagePage(String titreAttendu) {
+
+    WebDriverWait wait =
+            new WebDriverWait(Config.driver, Duration.ofSeconds(30));
+
+    System.out.println("URL actuelle : " + Config.driver.getCurrentUrl());
+    System.out.println("Titre de la page : " + Config.driver.getTitle());
+
+    wait.until(ExpectedConditions.presenceOfElementLocated(
+            By.tagName("body")));
+
+    WebElement titre = wait.until(
+            ExpectedConditions.visibilityOfElementLocated(
+                    By.xpath("//h5[contains(normalize-space(),'" + titreAttendu + "')]")
+            )
+    );
+
+    Assert.assertTrue(titre.isDisplayed());
+}
 	public void ClickOnbtnBus() {
 		WebDriverWait wait = new WebDriverWait(Config.driver, Duration.ofSeconds(20));
         wait.until(ExpectedConditions.elementToBeClickable(AjouterBus_btn));
