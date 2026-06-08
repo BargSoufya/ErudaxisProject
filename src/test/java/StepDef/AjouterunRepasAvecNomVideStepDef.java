@@ -56,11 +56,23 @@ public class AjouterunRepasAvecNomVideStepDef {
 		AjouterRepasPage ajouter=new AjouterRepasPage();
 		ajouter.verifierPageGestionCantine(page);
 	}
-	@When("l'admin clique sur le bouton {string}")
-	public void l_admin_clique_sur_le_bouton(String string) {
-		AjouterRepasPage ajouter=new AjouterRepasPage();
-		ajouter.ClickOnbtn();
-	}
+	// @When("l'admin clique sur le bouton {string}")
+	// public void l_admin_clique_sur_le_bouton(String string) {
+	// 	AjouterRepasPage ajouter=new AjouterRepasPage();
+	// 	ajouter.ClickOnbtn();
+	// }
+	 @When("l'admin clique sur le bouton {string}")
+    public void l_admin_clique_sur_le_bouton(String buttonName) {
+        // CORRECTION: Implémentation de la méthode manquante
+        if (buttonName.equals("Ajouter un repas")) {
+            AjouterRepasPage ajouter = new AjouterRepasPage();
+            ajouter.ClickOnbtn();
+        } else {
+            // Pour d'autres boutons si nécessaire
+            AjouterRepasPage ajouter = new AjouterRepasPage();
+            ajouter.ClickOnbtn();
+        }
+    }
 	@Then("le formulaire d'ajout d'un repas s'affiche")
 	public void le_formulaire_d_ajout_d_un_repas_s_affiche() {
 		AjouterRepasPage ajouter=new AjouterRepasPage();
