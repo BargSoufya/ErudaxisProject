@@ -61,7 +61,7 @@ public class AjouterunRepasAvecNomVideStepDef {
 	// 	AjouterRepasPage ajouter=new AjouterRepasPage();
 	// 	ajouter.ClickOnbtn();
 	// }
-	 @When("l'admin clique sur le bouton {string}")
+	 @When("l'admin clique sur le bouton ")
     public void l_admin_clique_sur_le_bouton(String buttonName) {
         // CORRECTION: Implémentation de la méthode manquante
         if (buttonName.equals("Ajouter un repas")) {
