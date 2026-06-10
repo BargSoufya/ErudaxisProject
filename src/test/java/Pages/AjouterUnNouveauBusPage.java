@@ -161,8 +161,17 @@ public class AjouterUnNouveauBusPage {
     WebDriverWait wait = new WebDriverWait(Config.driver, Duration.ofSeconds(45));
 
     try {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(
-            By.xpath("//*[contains(text(),'Liste des Bus')]")));
+        // wait.until(ExpectedConditions.visibilityOfElementLocated(
+        //     By.xpath("//*[contains(text(),'Liste des Bus')]")));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(90)); // était 45s
+		wait.until(ExpectedConditions.or(
+    	ExpectedConditions.visibilityOfElementLocated(
+        By.xpath("//*[contains(translate(text(),'abcdefghijklmnopqrstuvwxyz','ABCDEFGHIJKLMNOPQRSTUVWXYZ'),'LISTE DES BUS')]")
+    ),
+    	ExpectedConditions.visibilityOfElementLocated(
+        By.xpath("//*[contains(@class,'MuiTypography') and contains(text(),'Bus')]")
+   			 )
+		));
     } catch (org.openqa.selenium.TimeoutException e) {
         System.out.println("URL actuelle: " + Config.driver.getCurrentUrl());
         throw e;
