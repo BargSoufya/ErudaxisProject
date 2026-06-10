@@ -1,6 +1,5 @@
 package Pages;
 
-import java.sql.Driver;
 import java.time.Duration;
 import java.util.List;
 
@@ -125,19 +124,32 @@ public class LoginPage {
 		//         System.out.println(">>> ✅ Dashboard " + choix + " confirmé !");
 		//     }
 
-	public void VerifChoix(String userType) {
-    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+	// public void VerifChoix(String userType) {
+ //    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
     
-    // Wait for dashboard elements based on user type
+ //    // Wait for dashboard elements based on user type
+ //    if (userType.equals("lycee")) {
+ //        boolean dashboardDisplayed = wait.until(ExpectedConditions.or(
+ //            ExpectedConditions.urlContains("dashboard"),
+ //            ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@class, 'dashboard')]"))
+ //        ));
+        
+ //        Assert.assertTrue("Dashboard 'lycee' non affiché. URL=" + driver.getCurrentUrl(), 
+ //                         dashboardDisplayed);
+ //    }
+	public void VerifChoix(String userType) {
+    WebDriverWait wait = new WebDriverWait(Config.driver, Duration.ofSeconds(20));
+    
     if (userType.equals("lycee")) {
         boolean dashboardDisplayed = wait.until(ExpectedConditions.or(
             ExpectedConditions.urlContains("dashboard"),
             ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@class, 'dashboard')]"))
         ));
         
-        Assert.assertTrue("Dashboard 'lycee' non affiché. URL=" + driver.getCurrentUrl(), 
+        Assert.assertTrue("Dashboard 'lycee' non affiché. URL=" + Config.driver.getCurrentUrl(), 
                          dashboardDisplayed);
     }
+}
 }
 		
 			
