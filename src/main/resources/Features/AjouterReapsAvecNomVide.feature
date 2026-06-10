@@ -7,7 +7,7 @@ Feature: Ajouter un repas avec nom vide
     Then le sous-menu "Gestion Cantine" s affiche
     When l admin clique sur le sous-menu "Gestion Cantine"
     Then la page "Gestion de la Cantine" s affiche
-    When l admin clique sur le bouton "Ajouter un repas"
+    When l admin clique sur le bouton Ajouter un repas
    
 
   Scenario: Ajouter un nouveau repas avec nom vide
