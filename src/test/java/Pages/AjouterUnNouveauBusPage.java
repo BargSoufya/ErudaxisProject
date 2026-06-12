@@ -229,14 +229,30 @@ wait = new WebDriverWait(Config.driver, Duration.ofSeconds(90));
 	}
 	
 	public void ClickOnbtnavigation() {
-		WebDriverWait wait = new WebDriverWait(Config.driver, Duration.ofSeconds(20));
-    // Le 2ème bouton dans la barre de navigation (index 2)
-    WebElement btn = wait.until(ExpectedConditions.presenceOfElementLocated(
-        By.xpath("/html/body/div[1]/div[2]/div/div/div/div/div[2]/div[1]/div/div/div/button[2]")
-    ));
-    ((JavascriptExecutor) Config.driver).executeScript("arguments[0].scrollIntoView(true);", btn);
-    ((JavascriptExecutor) Config.driver).executeScript("arguments[0].click();", btn);
-    System.out.println("Navigation Chauffeur cliquée ✅");
+		// WebDriverWait wait = new WebDriverWait(Config.driver, Duration.ofSeconds(20));
+  //   // Le 2ème bouton dans la barre de navigation (index 2)
+  //   WebElement btn = wait.until(ExpectedConditions.presenceOfElementLocated(
+  //       By.xpath("/html/body/div[1]/div[2]/div/div/div/div/div[2]/div[1]/div/div/div/button[2]")
+  //   ));
+  //   ((JavascriptExecutor) Config.driver).executeScript("arguments[0].scrollIntoView(true);", btn);
+  //   ((JavascriptExecutor) Config.driver).executeScript("arguments[0].click();", btn);
+  //   System.out.println("Navigation Chauffeur cliquée ✅");
+		  WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+    
+    // Try different possible selectors
+    By navigationButton = By.xpath("//button[contains(text(), 'Chauffeur')]");
+    By navigationButtonAlt = By.cssSelector("button.navigation-button");
+    By navigationButtonAlt2 = By.xpath("//div[@class='navigation']//button[2]");
+    
+    try {
+        wait.until(ExpectedConditions.elementToBeClickable(navigationButton)).click();
+    } catch (TimeoutException e) {
+        try {
+            wait.until(ExpectedConditions.elementToBeClickable(navigationButtonAlt)).click();
+        } catch (TimeoutException e2) {
+            wait.until(ExpectedConditions.elementToBeClickable(navigationButtonAlt2)).click();
+        }
+    }
         
 	}
 	public void ClickOnbtchauff() {
