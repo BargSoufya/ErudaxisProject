@@ -26,7 +26,7 @@ public class Config {
     //     driver.manage().window().maximize();
     // }
 
-    public static void Maximaize() {
+    public static void Maximize() {
 //     ChromeOptions options = new ChromeOptions();
 //     options.addArguments("--headless=new");
 //     options.addArguments("--no-sandbox");
