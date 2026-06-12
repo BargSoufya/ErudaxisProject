@@ -245,14 +245,14 @@ public class RepasAvecNomVidePage {
 	   
 	}
 	
-	//public void messgaederreur(String text) {
+	public void messgaederreur(String text) {
 		
-	//	Alert alert = Config.driver.switchTo().alert();
-	//	String msg= alert.getText();
-	//	System.out.println("Echec!veuillez sasir le nom du repas " +msg);
-	//	alert.accept();
-	//	alert.dismiss();
-	//}
+		Alert alert = Config.driver.switchTo().alert();
+		String msg= alert.getText();
+		System.out.println("Echec!veuillez sasir le nom du repas " +msg);
+		alert.accept();
+		alert.dismiss();
+	}
 	
 		public void annulerlajout() {
 
