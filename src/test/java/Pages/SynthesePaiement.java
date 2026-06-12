@@ -66,14 +66,14 @@ public void selectionnerEtudiant (String etud) {
     ((JavascriptExecutor) Config.driver).executeScript("arguments[0].scrollIntoView(true);", input);
     ((JavascriptExecutor) Config.driver).executeScript("arguments[0].click();", input);
     
-    input.sendKeys(nom);
+    input.sendKeys(etud);
     
     // Attendre et cliquer sur la suggestion
     WebElement suggestion = wait.until(ExpectedConditions.elementToBeClickable(
-        By.xpath("//li[contains(@class,'MuiAutocomplete-option') and contains(.,'" + nom + "')]")
+        By.xpath("//li[contains(@class,'MuiAutocomplete-option') and contains(.,'" + etud + "')]")
     ));
     suggestion.click();
-    System.out.println("Étudiant sélectionné : " + nom + " ✅");
+    System.out.println("Étudiant sélectionné : " + etud + " ✅");
 }
 
 public void selectionnerDateDebut( String dateD) {
