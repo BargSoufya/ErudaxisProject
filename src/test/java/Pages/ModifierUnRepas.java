@@ -64,19 +64,41 @@ public class ModifierUnRepas {
 		
 // 	}
 	public void Menu()  {
-    WebDriverWait wait = new WebDriverWait(Config.driver, Duration.ofSeconds(20));
+    // WebDriverWait wait = new WebDriverWait(Config.driver, Duration.ofSeconds(20));
+
+    // WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(
+    //     By.xpath("//div[@role='tabpanel']//button")));
+
+    // ((JavascriptExecutor) Config.driver).executeScript("arguments[0].scrollIntoView(true);", element); // ✅
+    // wait.until(ExpectedConditions.elementToBeClickable(element));
+
+    // try {
+    //     element.click();
+    // } catch (Exception e) {
+    //     ((JavascriptExecutor) Config.driver).executeScript("arguments[0].click();", element); // ✅
+    // }
+
+		 WebDriverWait wait = new WebDriverWait(Config.driver, Duration.ofSeconds(20));
 
     WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(
         By.xpath("//div[@role='tabpanel']//button")));
 
-    ((JavascriptExecutor) Config.driver).executeScript("arguments[0].scrollIntoView(true);", element); // ✅
+    ((JavascriptExecutor) Config.driver).executeScript("arguments[0].scrollIntoView(true);", element);
     wait.until(ExpectedConditions.elementToBeClickable(element));
 
     try {
         element.click();
     } catch (Exception e) {
-        ((JavascriptExecutor) Config.driver).executeScript("arguments[0].click();", element); // ✅
+        ((JavascriptExecutor) Config.driver).executeScript("arguments[0].click();", element);
     }
+    
+    // ✅ Attendre que le menu popup soit bien ouvert
+    wait.until(
+        ExpectedConditions.visibilityOfElementLocated(
+            By.xpath("//ul[@role='menu']")
+        )
+    );
+    System.out.println("Menu ouvert ✅");
 }
 	
 	public void choixModif() {
