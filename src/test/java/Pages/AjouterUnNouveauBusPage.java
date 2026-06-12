@@ -178,9 +178,16 @@ wait = new WebDriverWait(Config.driver, Duration.ofSeconds(90));
     }
 }
 	public void ClickOnbtnBus() {
-		WebDriverWait wait = new WebDriverWait(Config.driver, Duration.ofSeconds(20));
-        wait.until(ExpectedConditions.elementToBeClickable(AjouterBus_btn));
-        AjouterBus_btn.click();
+		// WebDriverWait wait = new WebDriverWait(Config.driver, Duration.ofSeconds(20));
+  //       wait.until(ExpectedConditions.elementToBeClickable(AjouterBus_btn));
+  //       AjouterBus_btn.click();
+		 WebDriverWait wait = new WebDriverWait(Config.driver, Duration.ofSeconds(20));
+    WebElement btn = wait.until(ExpectedConditions.presenceOfElementLocated(
+        By.xpath("/html/body/div[1]/div[2]/div/div/div/div/div[2]/button")
+    ));
+    ((JavascriptExecutor) Config.driver).executeScript("arguments[0].scrollIntoView(true);", btn);
+    ((JavascriptExecutor) Config.driver).executeScript("arguments[0].click();", btn);
+    System.out.println("Bouton Bus cliqué ✅");
         
 	}
 	
