@@ -18,7 +18,7 @@ public class ModifierUnRepas {
 
 	@FindBy(css="#tabpanel-0 > div.MuiBox-root.css-1hdbc19 > div:nth-child(1) > div.MuiCollapse-root.MuiCollapse-vertical.MuiCollapse-entered.css-c4sutr > div > div > div > div > div > div > div > div.MuiBox-root.css-15bqc0t > button > svg")
 	WebElement Menurepas;
-	@FindBy(css="body > div.MuiPopover-root.MuiMenu-root.MuiModal-root.css-1sucic7 > div.MuiPaper-root.MuiMenu-paper.MuiPaper-elevation.MuiPaper-rounded.MuiPaper-elevation8.MuiPopover-paper.css-1mznjfp > ul > li.MuiButtonBase-root.MuiMenuItem-root.MuiMenuItem-gutters.MuiMenuItem-root.MuiMenuItem-gutters.css-1y9dian")
+	@FindBy(xpath="//ul[@role='menu']//li[normalize-space(text())='Modifier']")
 	WebElement modifier_bt;
 	@FindBy(xpath="/html/body/div[3]/div[3]/div/div[2]/div/div[1]/div/input")
 	WebElement Nomrepas;
