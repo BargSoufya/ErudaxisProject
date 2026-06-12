@@ -80,7 +80,18 @@ public class ModifierUnRepas {
 }
 	
 	public void choixModif() {
-		modifier_bt.click();
+		// modifier_bt.click();
+		 WebDriverWait wait = new WebDriverWait(Config.driver, Duration.ofSeconds(10));
+    Actions act = new Actions(Config.driver);
+    
+    // Attendre que le menu popup soit visible puis cliquer
+    WebElement modifierOption = wait.until(
+        ExpectedConditions.elementToBeClickable(
+            By.xpath("//ul[@role='menu']//li[normalize-space(text())='Modifier']")
+        )
+    );
+    act.moveToElement(modifierOption).click().perform();
+    System.out.println("Option Modifier cliquée ✅");
 	}
 	
     public void ModifierDate(String date) {
