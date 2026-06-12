@@ -78,26 +78,42 @@ public class ModifierUnRepas {
     //     ((JavascriptExecutor) Config.driver).executeScript("arguments[0].click();", element); // ✅
     // }
 
-		 WebDriverWait wait = new WebDriverWait(Config.driver, Duration.ofSeconds(20));
+		 // WebDriverWait wait = new WebDriverWait(Config.driver, Duration.ofSeconds(20));
 
+   //  WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(
+   //      By.xpath("//div[@role='tabpanel']//button")));
+
+   //  ((JavascriptExecutor) Config.driver).executeScript("arguments[0].scrollIntoView(true);", element);
+   //  wait.until(ExpectedConditions.elementToBeClickable(element));
+
+   //  try {
+   //      element.click();
+   //  } catch (Exception e) {
+   //      ((JavascriptExecutor) Config.driver).executeScript("arguments[0].click();", element);
+   //  }
+    
+   //  // ✅ Attendre que le menu popup soit bien ouvert
+   //  wait.until(
+   //      ExpectedConditions.visibilityOfElementLocated(
+   //          By.xpath("//ul[@role='menu']")
+   //      )
+   //  );
+   //  System.out.println("Menu ouvert ✅");
+		   WebDriverWait wait = new WebDriverWait(Config.driver, Duration.ofSeconds(20));
+
+    // Trouver le bouton 3 points (svg inside button)
     WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(
-        By.xpath("//div[@role='tabpanel']//button")));
+        By.xpath("//div[@role='tabpanel']//button[.//*[name()='svg']]")
+    ));
 
     ((JavascriptExecutor) Config.driver).executeScript("arguments[0].scrollIntoView(true);", element);
-    wait.until(ExpectedConditions.elementToBeClickable(element));
+    Config.attente(1);
+    ((JavascriptExecutor) Config.driver).executeScript("arguments[0].click();", element);
 
-    try {
-        element.click();
-    } catch (Exception e) {
-        ((JavascriptExecutor) Config.driver).executeScript("arguments[0].click();", element);
-    }
-    
-    // ✅ Attendre que le menu popup soit bien ouvert
-    wait.until(
-        ExpectedConditions.visibilityOfElementLocated(
-            By.xpath("//ul[@role='menu']")
-        )
-    );
+    // Attendre le menu — essayer les deux rôles possibles
+    wait.until(ExpectedConditions.visibilityOfElementLocated(
+        By.xpath("//ul[@role='menu'] | //ul[@role='listbox']")
+    ));
     System.out.println("Menu ouvert ✅");
 }
 	
