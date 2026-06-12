@@ -163,8 +163,7 @@ public class AjouterUnNouveauBusPage {
     try {
         // wait.until(ExpectedConditions.visibilityOfElementLocated(
         //     By.xpath("//*[contains(text(),'Liste des Bus')]")));
-		wait = new WebDriverWait(driver, Duration.ofSeconds(90));
-
+wait = new WebDriverWait(Config.driver, Duration.ofSeconds(90));
 		wait.until(ExpectedConditions.or(
     	ExpectedConditions.visibilityOfElementLocated(
         By.xpath("//*[contains(translate(text(),'abcdefghijklmnopqrstuvwxyz','ABCDEFGHIJKLMNOPQRSTUVWXYZ'),'LISTE DES BUS')]")
