@@ -130,7 +130,7 @@ public class AjouterunRepasAvecNomVideStepDef {
 	public void un_message_d_erreur_indique_que_le_nom_est_obligatoire() {
 
 	    RepasAvecNomVidePage repas = new RepasAvecNomVidePage();
-	    repas.messgaederreur();
+		repas.messgaederreur("Veuillez saisir le nom du repas");
 	}
 
 	@Then("le repas n'apparaît pas dans la liste des repas et quite le formulaire")
