@@ -223,8 +223,13 @@ wait = new WebDriverWait(Config.driver, Duration.ofSeconds(90));
 	
 	public void ClickOnbtnavigation() {
 		WebDriverWait wait = new WebDriverWait(Config.driver, Duration.ofSeconds(20));
-        wait.until(ExpectedConditions.elementToBeClickable(navigation_btn));
-        navigation_btn.click();
+    // Le 2ème bouton dans la barre de navigation (index 2)
+    WebElement btn = wait.until(ExpectedConditions.presenceOfElementLocated(
+        By.xpath("/html/body/div[1]/div[2]/div/div/div/div/div[2]/div[1]/div/div/div/button[2]")
+    ));
+    ((JavascriptExecutor) Config.driver).executeScript("arguments[0].scrollIntoView(true);", btn);
+    ((JavascriptExecutor) Config.driver).executeScript("arguments[0].click();", btn);
+    System.out.println("Navigation Chauffeur cliquée ✅");
         
 	}
 	public void ClickOnbtchauff() {
