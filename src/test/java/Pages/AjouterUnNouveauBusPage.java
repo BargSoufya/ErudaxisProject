@@ -240,9 +240,17 @@ wait = new WebDriverWait(Config.driver, Duration.ofSeconds(90));
         
 	}
 	public void ClickOnbtchauff() {
+		// WebDriverWait wait = new WebDriverWait(Config.driver, Duration.ofSeconds(20));
+  //       wait.until(ExpectedConditions.elementToBeClickable(chauff_btn));
+  //       chauff_btn.click();
+
 		WebDriverWait wait = new WebDriverWait(Config.driver, Duration.ofSeconds(20));
-        wait.until(ExpectedConditions.elementToBeClickable(chauff_btn));
-        chauff_btn.click();
+    WebElement btn = wait.until(ExpectedConditions.presenceOfElementLocated(
+        By.xpath("/html/body/div[1]/div[2]/div/div/div/div/div[2]/button")
+    ));
+    ((JavascriptExecutor) Config.driver).executeScript("arguments[0].scrollIntoView(true);", btn);
+    ((JavascriptExecutor) Config.driver).executeScript("arguments[0].click();", btn);
+    System.out.println("Bouton Chauffeur cliqué ✅");
         
 	}
 	public void verifAffichagechaufPage(String text) {
