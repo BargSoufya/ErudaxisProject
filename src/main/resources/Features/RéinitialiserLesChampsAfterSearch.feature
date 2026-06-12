@@ -1,4 +1,4 @@
-Feature: 
+Feature: Réinitialisation des champs Synthése de paiement 
 
 Background:
 Background:
