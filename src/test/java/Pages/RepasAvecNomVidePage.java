@@ -247,11 +247,19 @@ public class RepasAvecNomVidePage {
 	
 	public void messgaederreur(String text) {
 		
-		Alert alert = Config.driver.switchTo().alert();
-		String msg= alert.getText();
-		System.out.println("Echec!veuillez sasir le nom du repas " +msg);
-		alert.accept();
-		alert.dismiss();
+		// Alert alert = Config.driver.switchTo().alert();
+		// String msg= alert.getText();
+		// System.out.println("Echec!veuillez sasir le nom du repas " +msg);
+		// alert.accept();
+		// alert.dismiss();
+		  WebDriverWait wait = new WebDriverWait(Config.driver, Duration.ofSeconds(10));
+    WebElement msgErreur = wait.until(
+        ExpectedConditions.visibilityOfElementLocated(
+            By.xpath("//*[contains(@class,'error') or contains(@class,'Error') " +
+                     "or contains(@class,'Mui') and contains(text(),'" + text + "')]")
+        )
+    );
+    System.out.println("Message d'erreur affiché : " + msgErreur.getText() + " ✅");
 	}
 	
 		public void annulerlajout() {
