@@ -26,7 +26,7 @@ public class AjouterUnNouveauBusPage {
 	WebElement verif;
 	@FindBy (xpath="/html/body/div[1]/div[2]/div/div/div/div/div[2]/button")
 	WebElement AjouterBus_btn;
-	@FindBy (xpath="/html/body/div[1]/div[2]/div/div/div/div/div[2]/div[1]/div/div/div/button[2]")
+	@FindBy (xpath="//button[contains(text(),'Chauffeur') or contains(@aria-label,'Chauffeur')]")
 	WebElement navigation_btn;
 	@FindBy(xpath="/html/body/div[1]/div[2]/div/div/div/div/div[2]/button")
 	WebElement chauff_btn;
