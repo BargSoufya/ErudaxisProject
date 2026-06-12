@@ -32,30 +32,48 @@ public  SynthesePaiement() {
 	PageFactory.initElements(Config.driver,this);
 }
 public void selectionnerEtudiant (String etud) {
+// 	WebDriverWait wait = new WebDriverWait(Config.driver, Duration.ofSeconds(15));
+// 	JavascriptExecutor js = (JavascriptExecutor) Config.driver;
+
+// 	// 1. Localiser l'input étudiant (pas le WebElement PageFactory)
+// 	By Etud = By.xpath("//input[@type='text']");
+
+// 	// 2. Attendre + cliquer
+// 	WebElement input = wait.until(ExpectedConditions.elementToBeClickable(Etud));
+// 	input.click();
+
+// 	// 3. Taper pour déclencher la liste
+// 	input.sendKeys("Nour");
+
+// 	// 4. Attendre l’option dans la liste dynamique
+// 	By optionEtud = By.xpath("//li[contains(@class,'MuiAutocomplete-option') and contains(text(),'Nour')]");
+
+// 	WebElement option = wait.until(ExpectedConditions.visibilityOfElementLocated(optionEtud));
+
+// 	// 5. Scroll (optionnel mais safe)
+// 	js.executeScript("arguments[0].scrollIntoView(true);", option);
+
+// 	// 6. Cliquer
+// 	option.click();
+// System.out.println(">>> ✅ Étudiant sélectionné : " + etud);
 	WebDriverWait wait = new WebDriverWait(Config.driver, Duration.ofSeconds(15));
-	JavascriptExecutor js = (JavascriptExecutor) Config.driver;
-
-	// 1. Localiser l'input étudiant (pas le WebElement PageFactory)
-	By Etud = By.xpath("//input[@type='text']");
-
-	// 2. Attendre + cliquer
-	WebElement input = wait.until(ExpectedConditions.elementToBeClickable(Etud));
-	input.click();
-
-	// 3. Taper pour déclencher la liste
-	input.sendKeys("Nour");
-
-	// 4. Attendre l’option dans la liste dynamique
-	By optionEtud = By.xpath("//li[contains(@class,'MuiAutocomplete-option') and contains(text(),'Nour')]");
-
-	WebElement option = wait.until(ExpectedConditions.visibilityOfElementLocated(optionEtud));
-
-	// 5. Scroll (optionnel mais safe)
-	js.executeScript("arguments[0].scrollIntoView(true);", option);
-
-	// 6. Cliquer
-	option.click();
-System.out.println(">>> ✅ Étudiant sélectionné : " + etud);
+    
+    WebElement input = wait.until(ExpectedConditions.presenceOfElementLocated(
+        By.cssSelector("input[placeholder='Sélectionner un étudiant...']")
+    ));
+    
+    // Fermer tout overlay éventuel d'abord
+    ((JavascriptExecutor) Config.driver).executeScript("arguments[0].scrollIntoView(true);", input);
+    ((JavascriptExecutor) Config.driver).executeScript("arguments[0].click();", input);
+    
+    input.sendKeys(nom);
+    
+    // Attendre et cliquer sur la suggestion
+    WebElement suggestion = wait.until(ExpectedConditions.elementToBeClickable(
+        By.xpath("//li[contains(@class,'MuiAutocomplete-option') and contains(.,'" + nom + "')]")
+    ));
+    suggestion.click();
+    System.out.println("Étudiant sélectionné : " + nom + " ✅");
 }
 
 public void selectionnerDateDebut( String dateD) {
