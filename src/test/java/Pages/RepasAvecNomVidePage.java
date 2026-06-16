@@ -60,7 +60,6 @@ public class RepasAvecNomVidePage {
      */
     public void ajouterRepasAvecLesChamps(String date, String description, double prix, int quantite) {
         try {
-            // Vider les champs avant de saisir
             DateRepas.clear();
             Description.clear();
             Prix.clear();
@@ -85,22 +84,18 @@ public class RepasAvecNomVidePage {
         try {
             Actions act = new Actions(Config.driver);
 
-            // 1. Ouvrir la grille d'emojis
             act.moveToElement(Emoji_btn).click().perform();
             System.out.println("🔄 Grille d'emojis ouverte");
 
-            // 2. Attendre que les emojis soient chargés
             wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(
                 By.cssSelector("button.MuiButton-textPrimary"), 0));
 
-            // 3. Trouver et cliquer sur l'emoji cible
             WebElement emojiBtn = wait.until(ExpectedConditions.elementToBeClickable(
                 By.xpath("//button[contains(@class,'MuiButton-textPrimary') and normalize-space(text())='" + emojiCible + "']")));
             
             act.scrollToElement(emojiBtn).moveToElement(emojiBtn).click().perform();
             System.out.println("✅ Emoji sélectionné : " + emojiCible);
 
-            // 4. Attendre la fermeture de la grille
             wait.until(ExpectedConditions.invisibilityOfElementLocated(
                 By.cssSelector("button.MuiButton-textPrimary")));
             System.out.println("✅ Grille emoji fermée");
@@ -119,7 +114,6 @@ public class RepasAvecNomVidePage {
             JavascriptExecutor js = (JavascriptExecutor) Config.driver;
             Actions act = new Actions(Config.driver);
 
-            // 1. Fermer la grille d'emojis si elle est encore ouverte
             try {
                 wait.until(ExpectedConditions.invisibilityOfElementLocated(
                     By.cssSelector("button.MuiButton-textPrimary")));
@@ -128,7 +122,6 @@ public class RepasAvecNomVidePage {
                 Config.attente(1);
             }
 
-            // 2. Fermer le backdrop si présent
             try {
                 WebElement backdrop = Config.driver.findElement(By.cssSelector(".MuiBackdrop-root"));
                 if (backdrop.isDisplayed()) {
@@ -139,24 +132,19 @@ public class RepasAvecNomVidePage {
                 // Pas de backdrop, on continue
             }
 
-            // 3. Ouvrir le menu déroulant
             WebElement select = wait.until(ExpectedConditions.elementToBeClickable(
                 By.cssSelector(".MuiSelect-select")));
             act.scrollToElement(select).moveToElement(select).click().perform();
 
-            // 4. Attendre l'ouverture du menu
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("ul[role='listbox']")));
 
-            // 5. Déterminer l'option à sélectionner
             String optionText = mapCategorie(categorie);
 
-            // 6. Cliquer sur l'option
             WebElement option = wait.until(ExpectedConditions.elementToBeClickable(
                 By.xpath("//ul[@role='listbox']//li[normalize-space(text())='" + optionText + "']")));
             js.executeScript("arguments[0].click();", option);
             System.out.println("✅ Catégorie sélectionnée : " + categorie);
 
-            // 7. Fermer le menu en cliquant ailleurs
             act.moveToElement(NomRepas).click().perform();
             Config.attente(1);
 
@@ -166,9 +154,6 @@ public class RepasAvecNomVidePage {
         }
     }
 
-    /**
-     * Mappe les catégories utilisateur vers les valeurs attendues par l'application
-     */
     private String mapCategorie(String categorie) {
         switch (categorie.toLowerCase().trim()) {
             case "petit dejeuner":
@@ -196,9 +181,6 @@ public class RepasAvecNomVidePage {
         }
     }
 
-    /**
-     * Saisit une description avec nettoyage préalable du champ
-     */
     public void saisirDescription(String texte) {
         try {
             Description.clear();
@@ -218,9 +200,6 @@ public class RepasAvecNomVidePage {
         }
     }
 
-    /**
-     * Laisse le champ nom vide
-     */
     public void laisserNomVide() {
         try {
             NomRepas.clear();
@@ -231,10 +210,6 @@ public class RepasAvecNomVidePage {
         }
     }
 
-<<<<<<< HEAD
-    /**
-     * Sélectionne une date dans le champ date
-     */
     public void selectionnerDate(String date) {
         try {
             JavascriptExecutor js = (JavascriptExecutor) Config.driver;
@@ -244,96 +219,14 @@ public class RepasAvecNomVidePage {
             String jour = parts[0];
             String mois = parts[1];
             String annee = parts[2];
-=======
-	 
-	
-	
-	//	public void ajouterRepas() {
-		   // WebDriverWait wait = new WebDriverWait(Config.driver, Duration.ofSeconds(15));
-		  //  Actions act = new Actions(Config.driver);
-		    
-		 //   wait.until(ExpectedConditions.elementToBeClickable(creerRepas));
-		 //   act.moveToElement(creerRepas).click().perform();
-	   
-	//}
-	
-	public void ajouterRepas() {
-	    WebDriverWait wait = new WebDriverWait(Config.driver, Duration.ofSeconds(15));
-	    
-	    // Attendre que l'animation du dialog soit terminée
-	    wait.until(ExpectedConditions.invisibilityOfElementLocated(
-	        By.cssSelector(".MuiDialog-container[style*='opacity: 0']")
-	    ));
-	    
-	    // Attendre que le bouton soit cliquable
-	    wait.until(ExpectedConditions.elementToBeClickable(creerRepas));
-	    
-	    // Cliquer via JavaScript pour éviter l'interception
-	    ((JavascriptExecutor) Config.driver).executeScript("arguments[0].scrollIntoView(true);", creerRepas);
-	    ((JavascriptExecutor) Config.driver).executeScript("arguments[0].click();", creerRepas);
-	}
-	
-	public void messgaederreur(String text) {
-		
-		// Alert alert = Config.driver.switchTo().alert();
-		// String msg= alert.getText();
-		// System.out.println("Echec!veuillez sasir le nom du repas " +msg);
-		// alert.accept();
-		// alert.dismiss();
-		  WebDriverWait wait = new WebDriverWait(Config.driver, Duration.ofSeconds(10));
-    WebElement msgErreur = wait.until(
-        ExpectedConditions.visibilityOfElementLocated(
-            By.xpath("//*[contains(@class,'error') or contains(@class,'Error') " +
-                     "or contains(@class,'Mui') and contains(text(),'" + text + "')]")
-        )
-    );
-    System.out.println("Message d'erreur affiché : " + msgErreur.getText() + " ✅");
-	}
-	
-		// public void annulerlajout() {
 
-
-		//     wait.until(ExpectedConditions.elementToBeClickable(annuler));
-		//     act.moveToElement(annuler).click().perform();
-		
-		// }
-		
-		// public void verifierMessageErreur() {
-		//     WebDriverWait wait = new WebDriverWait(Config.driver, Duration.ofSeconds(10));
-		    
-		//     WebElement messageErreur = wait.until(ExpectedConditions.visibilityOfElementLocated(
-		//         By.xpath("//*[contains(text(),'obligatoire') or contains(text(),'requis') or contains(text(),'required')]")
-		//     ));
-		    
-		//     System.out.println("Message d'erreur affiché : " + messageErreur.getText());
-		//     assert messageErreur.isDisplayed() : "Le message d'erreur n'est pas affiché !";
-		// }
-
-  //   WebDriverWait wait = new WebDriverWait(Config.driver, Duration.ofSeconds(15));
-  //   Actions act = new Actions(Config.driver);
-
-  //   WebElement annulerBtn = wait.until(
-  //       ExpectedConditions.elementToBeClickable(annuler)
-  //   );
-
-  //   act.moveToElement(annulerBtn).click().perform();
-
-	public void annulerlajout() {
-    WebDriverWait wait = new WebDriverWait(Config.driver, Duration.ofSeconds(15));
-    Actions act = new Actions(Config.driver);
->>>>>>> 35f8044f97b6dbaee155f9ff90c8a3ddde73f62e
-
-            // 1. Cliquer sur le champ
             act.moveToElement(DateRepas).click().perform();
             Config.attente(1);
 
-<<<<<<< HEAD
-            // 2. Saisir la date
             DateRepas.sendKeys(jour);
             DateRepas.sendKeys(mois);
             DateRepas.sendKeys(annee);
 
-            // 3. Valider avec TAB
             DateRepas.sendKeys(Keys.TAB);
             Config.attente(1);
 
@@ -345,12 +238,8 @@ public class RepasAvecNomVidePage {
         }
     }
 
-    /**
-     * Crée le repas en cliquant sur le bouton
-     */
     public void ajouterRepas() {
         try {
-            // Attendre la fin de l'animation du dialog
             try {
                 wait.until(ExpectedConditions.invisibilityOfElementLocated(
                     By.cssSelector(".MuiDialog-container[style*='opacity: 0']")));
@@ -358,10 +247,8 @@ public class RepasAvecNomVidePage {
                 // Pas d'animation, on continue
             }
 
-            // Attendre que le bouton soit cliquable
             wait.until(ExpectedConditions.elementToBeClickable(creerRepas));
 
-            // Cliquer via JavaScript
             JavascriptExecutor js = (JavascriptExecutor) Config.driver;
             js.executeScript("arguments[0].scrollIntoView(true);", creerRepas);
             js.executeScript("arguments[0].click();", creerRepas);
@@ -373,9 +260,6 @@ public class RepasAvecNomVidePage {
         }
     }
 
-    /**
-     * Annule l'ajout en cliquant sur le bouton annuler
-     */
     public void annulerLajout() {
         try {
             wait.until(ExpectedConditions.elementToBeClickable(annuler));
@@ -391,9 +275,6 @@ public class RepasAvecNomVidePage {
         }
     }
 
-    /**
-     * Vérifie qu'un message d'erreur est affiché
-     */
     public void verifierMessageErreur() {
         try {
             WebElement messageErreur = wait.until(ExpectedConditions.visibilityOfElementLocated(
@@ -411,9 +292,6 @@ public class RepasAvecNomVidePage {
         }
     }
 
-    /**
-     * Vérifie qu'un message d'erreur spécifique est affiché
-     */
     public void verifierMessageErreurSpecifique(String texteAttendu) {
         try {
             WebElement messageErreur = wait.until(ExpectedConditions.visibilityOfElementLocated(
@@ -431,19 +309,3 @@ public class RepasAvecNomVidePage {
         }
     }
 }
-=======
-    act.moveToElement(annulerBtn).click().perform();
-}
-	public void verifierMessageErreur() {
-	    WebDriverWait wait = new WebDriverWait(Config.driver, Duration.ofSeconds(10));
-	    
-	    WebElement messageErreur = wait.until(ExpectedConditions.visibilityOfElementLocated(
-	        By.xpath("//*[contains(text(),'obligatoire') or contains(text(),'requis') or contains(text(),'required')]")
-	    ));
-	    
-	    System.out.println("Message d'erreur affiché : " + messageErreur.getText());
-	    assert messageErreur.isDisplayed() : "Le message d'erreur n'est pas affiché !";
-	}
-
-}
->>>>>>> 35f8044f97b6dbaee155f9ff90c8a3ddde73f62e
