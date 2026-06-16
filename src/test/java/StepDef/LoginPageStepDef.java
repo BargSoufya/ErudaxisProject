@@ -37,7 +37,7 @@ public void admin_est_sur_la_page_d_authentification() {
     // options.addArguments("--disable-gpu");
     
     // Config.driver = new ChromeDriver(options);
-    Config.Maximaize();
+    Config.Maximize();
     String url = "https://staging.erudaxis.com/";
     Config.driver.get(url);
 }
