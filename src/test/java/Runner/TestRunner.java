@@ -6,14 +6,8 @@ import io.cucumber.junit.CucumberOptions;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-
     features = "src/main/resources/Features/",
-<<<<<<< HEAD
-	tags = "",
-   // features = "src/main/resources/Features/AjouterReapsAvecNomVide.feature",
-=======
     tags = "",
->>>>>>> 35f8044f97b6dbaee155f9ff90c8a3ddde73f62e
     glue = "StepDef",
     plugin = {
         "pretty",
