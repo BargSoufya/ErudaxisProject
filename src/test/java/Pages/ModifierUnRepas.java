@@ -123,7 +123,7 @@ public class ModifierUnRepas {
     ));
     
     // Scroll into view
-    ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", threeDots);
+    ((JavascriptExecutor) Config.driver).executeScript("arguments[0].scrollIntoView(true);", threeDots);
     
     // Wait for clickability
     wait.until(ExpectedConditions.elementToBeClickable(threeDots)).click();
