@@ -278,13 +278,13 @@ public class RepasAvecNomVidePage {
     System.out.println("Message d'erreur affiché : " + msgErreur.getText() + " ✅");
 	}
 	
-		public void annulerlajout() {
+		// public void annulerlajout() {
 
 
-		    wait.until(ExpectedConditions.elementToBeClickable(annuler));
-		    act.moveToElement(annuler).click().perform();
+		//     wait.until(ExpectedConditions.elementToBeClickable(annuler));
+		//     act.moveToElement(annuler).click().perform();
 		
-		}
+		// }
 		
 		// public void verifierMessageErreur() {
 		//     WebDriverWait wait = new WebDriverWait(Config.driver, Duration.ofSeconds(10));
@@ -306,6 +306,16 @@ public class RepasAvecNomVidePage {
 
   //   act.moveToElement(annulerBtn).click().perform();
 
+	public void annulerlajout() {
+    WebDriverWait wait = new WebDriverWait(Config.driver, Duration.ofSeconds(15));
+    Actions act = new Actions(Config.driver);
+
+    WebElement annulerBtn = wait.until(
+        ExpectedConditions.elementToBeClickable(annuler)
+    );
+
+    act.moveToElement(annulerBtn).click().perform();
+}
 	public void verifierMessageErreur() {
 	    WebDriverWait wait = new WebDriverWait(Config.driver, Duration.ofSeconds(10));
 	    
