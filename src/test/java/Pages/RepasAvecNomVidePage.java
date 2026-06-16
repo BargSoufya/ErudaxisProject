@@ -262,7 +262,6 @@ public class RepasAvecNomVidePage {
 	}
 	
 	public void messgaederreur(String text) {
->>>>>>> 753a6a8fa3ba504a8a77c7c23de88648fed86df4
 		
 		// Alert alert = Config.driver.switchTo().alert();
 		// String msg= alert.getText();
@@ -281,7 +280,7 @@ public class RepasAvecNomVidePage {
 	
 		public void annulerlajout() {
 
-<<<<<<< HEAD
+
 		    wait.until(ExpectedConditions.elementToBeClickable(annuler));
 		    act.moveToElement(annuler).click().perform();
 		
@@ -300,7 +299,6 @@ public class RepasAvecNomVidePage {
 =======
     WebDriverWait wait = new WebDriverWait(Config.driver, Duration.ofSeconds(15));
     Actions act = new Actions(Config.driver);
->>>>>>> 753a6a8fa3ba504a8a77c7c23de88648fed86df4
 
     WebElement annulerBtn = wait.until(
         ExpectedConditions.elementToBeClickable(annuler)
