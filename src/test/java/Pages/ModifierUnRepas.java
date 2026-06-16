@@ -115,7 +115,7 @@ public class ModifierUnRepas {
     //     By.xpath("//ul[@role='menu'] | //ul[@role='listbox']")
     // ));
     // System.out.println("Menu ouvert ✅");
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+		WebDriverWait wait = new WebDriverWait(Config.driver, Duration.ofSeconds(20));
     
     // Scroll to the element first
     WebElement threeDots = wait.until(ExpectedConditions.presenceOfElementLocated(
