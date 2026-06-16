@@ -1,8 +1,7 @@
 package Pages;
 
 import java.time.Duration;
-import java.util.concurrent.TimeoutException;
-
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -19,7 +18,7 @@ public class ModifierUnRepas {
 
 	@FindBy(css="#tabpanel-0 > div.MuiBox-root.css-1hdbc19 > div:nth-child(1) > div.MuiCollapse-root.MuiCollapse-vertical.MuiCollapse-entered.css-c4sutr > div > div > div > div > div > div > div > div.MuiBox-root.css-15bqc0t > button > svg")
 	WebElement Menurepas;
-	@FindBy(css="body > div.MuiPopover-root.MuiMenu-root.MuiModal-root.css-1sucic7 > div.MuiPaper-root.MuiMenu-paper.MuiPaper-elevation.MuiPaper-rounded.MuiPaper-elevation8.MuiPopover-paper.css-1mznjfp > ul > li.MuiButtonBase-root.MuiMenuItem-root.MuiMenuItem-gutters.MuiMenuItem-root.MuiMenuItem-gutters.css-1y9dian")
+	@FindBy(xpath="//ul[@role='menu']//li[normalize-space(text())='Modifier']")
 	WebElement modifier_bt;
 	@FindBy(xpath="/html/body/div[3]/div[3]/div/div[2]/div/div[1]/div/input")
 	WebElement Nomrepas;
@@ -45,13 +44,104 @@ public class ModifierUnRepas {
 		PageFactory.initElements(Config.driver,this);
 	}
 	
+// 	public void Menu()  {
+		
+// 	//Menurepas.click();
+// 		WebDriverWait wait = new WebDriverWait(Config.driver, Duration.ofSeconds(20));
+
+// // wait.until(ExpectedConditions.elementToBeClickable(
+// //     By.xpath("//div[@role='tabpanel']//button//*[name()='svg']")
+// // )).click();
+// 		WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(
+//     By.xpath("//div[@role='tabpanel']//button")));
+// ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
+// wait.until(ExpectedConditions.elementToBeClickable(element));
+// try {
+//     element.click();
+// } catch (Exception e) {
+//     ((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
+// }
+		
+// 	}
 	public void Menu()  {
-		
-	Menurepas.click();
-		
-	}
+    // WebDriverWait wait = new WebDriverWait(Config.driver, Duration.ofSeconds(20));
+
+    // WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(
+    //     By.xpath("//div[@role='tabpanel']//button")));
+
+    // ((JavascriptExecutor) Config.driver).executeScript("arguments[0].scrollIntoView(true);", element); // ✅
+    // wait.until(ExpectedConditions.elementToBeClickable(element));
+
+    // try {
+    //     element.click();
+    // } catch (Exception e) {
+    //     ((JavascriptExecutor) Config.driver).executeScript("arguments[0].click();", element); // ✅
+    // }
+
+		 // WebDriverWait wait = new WebDriverWait(Config.driver, Duration.ofSeconds(20));
+
+   //  WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(
+   //      By.xpath("//div[@role='tabpanel']//button")));
+
+   //  ((JavascriptExecutor) Config.driver).executeScript("arguments[0].scrollIntoView(true);", element);
+   //  wait.until(ExpectedConditions.elementToBeClickable(element));
+
+   //  try {
+   //      element.click();
+   //  } catch (Exception e) {
+   //      ((JavascriptExecutor) Config.driver).executeScript("arguments[0].click();", element);
+   //  }
+    
+   //  // ✅ Attendre que le menu popup soit bien ouvert
+   //  wait.until(
+   //      ExpectedConditions.visibilityOfElementLocated(
+   //          By.xpath("//ul[@role='menu']")
+   //      )
+   //  );
+   //  System.out.println("Menu ouvert ✅");
+		  //  WebDriverWait wait = new WebDriverWait(Config.driver, Duration.ofSeconds(20));
+
+    // // Trouver le bouton 3 points (svg inside button)
+    // WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(
+    //     By.xpath("//div[@role='tabpanel']//button[.//*[name()='svg']]")
+    // ));
+
+    // ((JavascriptExecutor) Config.driver).executeScript("arguments[0].scrollIntoView(true);", element);
+    // Config.attente(1);
+    // ((JavascriptExecutor) Config.driver).executeScript("arguments[0].click();", element);
+
+    // // Attendre le menu — essayer les deux rôles possibles
+    // wait.until(ExpectedConditions.visibilityOfElementLocated(
+    //     By.xpath("//ul[@role='menu'] | //ul[@role='listbox']")
+    // ));
+    // System.out.println("Menu ouvert ✅");
+		WebDriverWait wait = new WebDriverWait(Config.driver, Duration.ofSeconds(20));
+    
+    // Scroll to the element first
+    WebElement threeDots = wait.until(ExpectedConditions.presenceOfElementLocated(
+        By.xpath("//button[contains(@class, 'MuiIconButton-root')]//*[local-name()='svg']")
+    ));
+    
+    // Scroll into view
+    ((JavascriptExecutor) Config.driver).executeScript("arguments[0].scrollIntoView(true);", threeDots);
+    
+    // Wait for clickability
+    wait.until(ExpectedConditions.elementToBeClickable(threeDots)).click();
+}
+	
 	public void choixModif() {
-		modifier_bt.click();
+		// modifier_bt.click();
+		 WebDriverWait wait = new WebDriverWait(Config.driver, Duration.ofSeconds(10));
+    Actions act = new Actions(Config.driver);
+    
+    // Attendre que le menu popup soit visible puis cliquer
+    WebElement modifierOption = wait.until(
+        ExpectedConditions.elementToBeClickable(
+            By.xpath("//ul[@role='menu']//li[normalize-space(text())='Modifier']")
+        )
+    );
+    act.moveToElement(modifierOption).click().perform();
+    System.out.println("Option Modifier cliquée ✅");
 	}
 	
     public void ModifierDate(String date) {

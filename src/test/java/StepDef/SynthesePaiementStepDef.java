@@ -18,8 +18,8 @@ public class SynthesePaiementStepDef {
 
 @Given("l admin est authentifie avec {string} et {string} et choisit {string}")
 public void l_admin_est_authentifie_avec_et_et_choisit(String email, String pwd, String role) {
-	Config.driver = new ChromeDriver ();
-	Config.Maximaize();	
+	//Config.driver = new ChromeDriver ();
+	Config.Maximize();
    String url="https://staging.erudaxis.com/";
    Config.driver.get(url);
    LoginPage logp=new LoginPage();

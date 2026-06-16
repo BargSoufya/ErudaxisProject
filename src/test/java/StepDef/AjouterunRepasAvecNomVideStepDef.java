@@ -18,7 +18,7 @@ public class AjouterunRepasAvecNomVideStepDef {
 	@Given("l'admin est authentifié par l'email {string} et le mot de passe {string}")
 	public void l_admin_est_authentifié_avec_l_email_et_le_mot_de_passe(String email, String pwd) {
 		Config.driver = new ChromeDriver ();
-		Config.Maximaize();	
+		Config.Maximize();	
 	   String url="https://staging.erudaxis.com/";
 	   Config.driver.get(url);
 	   LoginPage logp=new LoginPage();
@@ -130,7 +130,11 @@ public class AjouterunRepasAvecNomVideStepDef {
 	public void un_message_d_erreur_indique_que_le_nom_est_obligatoire() {
 
 	    RepasAvecNomVidePage repas = new RepasAvecNomVidePage();
+<<<<<<< HEAD
 	    repas.verifierMessageErreur();
+=======
+		repas.messgaederreur("Veuillez saisir le nom du repas");
+>>>>>>> 753a6a8fa3ba504a8a77c7c23de88648fed86df4
 	}
 
 	@Then("le repas n'apparaît pas dans la liste des repas et quite le formulaire")
@@ -139,6 +143,10 @@ public class AjouterunRepasAvecNomVideStepDef {
 		NomVide.annulerlajout();
 	}
 }
+
+
+
+
 
 
 

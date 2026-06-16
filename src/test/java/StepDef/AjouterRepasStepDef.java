@@ -15,7 +15,7 @@ public class AjouterRepasStepDef {
 	@Given("l admin est  redirige vers la page du tableau de bord")
 	public void l_admin_est_redirige_vers_la_page_du_tableau_de_bord() {
 		Config.driver = new ChromeDriver ();
-		Config.Maximaize();	
+		Config.Maximize();	
 	   String url="https://staging.erudaxis.com/";
 	   Config.driver.get(url);
 	   Config.driver.quit();

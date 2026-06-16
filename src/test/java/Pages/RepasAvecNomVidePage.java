@@ -245,6 +245,7 @@ public class RepasAvecNomVidePage {
 	   
 	//}
 	
+<<<<<<< HEAD
 	public void ajouterRepas() {
 	    WebDriverWait wait = new WebDriverWait(Config.driver, Duration.ofSeconds(15));
 	    
@@ -261,18 +262,28 @@ public class RepasAvecNomVidePage {
 	    ((JavascriptExecutor) Config.driver).executeScript("arguments[0].click();", creerRepas);
 	}
 	//public void messgaederreur(String text) {
+=======
+	public void messgaederreur(String text) {
+>>>>>>> 753a6a8fa3ba504a8a77c7c23de88648fed86df4
 		
-	//	Alert alert = Config.driver.switchTo().alert();
-	//	String msg= alert.getText();
-	//	System.out.println("Echec!veuillez sasir le nom du repas " +msg);
-	//	alert.accept();
-	//	alert.dismiss();
-	//}
+		// Alert alert = Config.driver.switchTo().alert();
+		// String msg= alert.getText();
+		// System.out.println("Echec!veuillez sasir le nom du repas " +msg);
+		// alert.accept();
+		// alert.dismiss();
+		  WebDriverWait wait = new WebDriverWait(Config.driver, Duration.ofSeconds(10));
+    WebElement msgErreur = wait.until(
+        ExpectedConditions.visibilityOfElementLocated(
+            By.xpath("//*[contains(@class,'error') or contains(@class,'Error') " +
+                     "or contains(@class,'Mui') and contains(text(),'" + text + "')]")
+        )
+    );
+    System.out.println("Message d'erreur affiché : " + msgErreur.getText() + " ✅");
+	}
 	
 		public void annulerlajout() {
-		    WebDriverWait wait = new WebDriverWait(Config.driver, Duration.ofSeconds(15));
-		    Actions act = new Actions(Config.driver);
 
+<<<<<<< HEAD
 		    wait.until(ExpectedConditions.elementToBeClickable(annuler));
 		    act.moveToElement(annuler).click().perform();
 		
@@ -288,5 +299,15 @@ public class RepasAvecNomVidePage {
 		    System.out.println("Message d'erreur affiché : " + messageErreur.getText());
 		    assert messageErreur.isDisplayed() : "Le message d'erreur n'est pas affiché !";
 		}
+=======
+    WebDriverWait wait = new WebDriverWait(Config.driver, Duration.ofSeconds(15));
+    Actions act = new Actions(Config.driver);
+>>>>>>> 753a6a8fa3ba504a8a77c7c23de88648fed86df4
 
+    WebElement annulerBtn = wait.until(
+        ExpectedConditions.elementToBeClickable(annuler)
+    );
+
+    act.moveToElement(annulerBtn).click().perform();
+}
 }

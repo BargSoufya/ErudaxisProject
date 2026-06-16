@@ -1,3 +1,4 @@
+@login
 Feature:  Authentification page
 
 Scenario Outline: AuthentificationPage
