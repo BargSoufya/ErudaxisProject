@@ -136,19 +136,24 @@ public class AjouterunRepasAvecNomVideStepDef {
 // 		repas.messgaederreur("Veuillez saisir le nom du repas");
 // >>>>>>> 753a6a8fa3ba504a8a77c7c23de88648fed86df4
 // 	}
-	@Then("un message d erreur indique que le nom est obligatoire")
-	public void un_message_d_erreur_indique_que_le_nom_est_obligatoire() {
-	    RepasAvecNomVidePage repas = new RepasAvecNomVidePage();
+	// @Then("un message d erreur indique que le nom est obligatoire")
+	// public void un_message_d_erreur_indique_que_le_nom_est_obligatoire() {
+	//     RepasAvecNomVidePage repas = new RepasAvecNomVidePage();
 
 
-		repas.verifierMessageErreur();
+	// 	repas.verifierMessageErreur();
 
 	   
 
 
-	    repas.messgaederreur("Veuillez saisir le nom du repas");
+	//     repas.messgaederreur("Veuillez saisir le nom du repas");
 
-	}
+	// }
+	@Then("un message d erreur indique que le nom est obligatoire")
+public void un_message_d_erreur_indique_que_le_nom_est_obligatoire() {
+    RepasAvecNomVidePage repas = new RepasAvecNomVidePage();
+    repas.verifierMessageErreur();
+}
 
 	@Then("le repas n'apparaît pas dans la liste des repas et quite le formulaire")
 	public void le_repas_n_apparaît_pas_dans_la_liste_des_repas_et_quite_le_formulaire() {
