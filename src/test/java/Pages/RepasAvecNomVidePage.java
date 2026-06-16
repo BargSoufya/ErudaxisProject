@@ -307,3 +307,4 @@ public class RepasAvecNomVidePage {
     act.moveToElement(annulerBtn).click().perform();
 }
 }
+}
