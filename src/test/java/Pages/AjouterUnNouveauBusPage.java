@@ -237,7 +237,7 @@ wait = new WebDriverWait(Config.driver, Duration.ofSeconds(90));
   //   ((JavascriptExecutor) Config.driver).executeScript("arguments[0].scrollIntoView(true);", btn);
   //   ((JavascriptExecutor) Config.driver).executeScript("arguments[0].click();", btn);
   //   System.out.println("Navigation Chauffeur cliquée ✅");
-		  WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+		  WebDriverWait wait = new WebDriverWait(Config.driver, Duration.ofSeconds(20));
     
     // Try different possible selectors
     By navigationButton = By.xpath("//button[contains(text(), 'Chauffeur')]");
