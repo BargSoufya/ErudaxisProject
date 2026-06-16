@@ -236,15 +236,30 @@ public class RepasAvecNomVidePage {
 	 
 	
 	
-		public void ajouterRepas() {
-		    WebDriverWait wait = new WebDriverWait(Config.driver, Duration.ofSeconds(15));
-		    Actions act = new Actions(Config.driver);
+	//	public void ajouterRepas() {
+		   // WebDriverWait wait = new WebDriverWait(Config.driver, Duration.ofSeconds(15));
+		  //  Actions act = new Actions(Config.driver);
 		    
-		    wait.until(ExpectedConditions.elementToBeClickable(creerRepas));
-		    act.moveToElement(creerRepas).click().perform();
+		 //   wait.until(ExpectedConditions.elementToBeClickable(creerRepas));
+		 //   act.moveToElement(creerRepas).click().perform();
 	   
-	}
+	//}
 	
+	public void ajouterRepas() {
+	    WebDriverWait wait = new WebDriverWait(Config.driver, Duration.ofSeconds(15));
+	    
+	    // Attendre que l'animation du dialog soit terminée
+	    wait.until(ExpectedConditions.invisibilityOfElementLocated(
+	        By.cssSelector(".MuiDialog-container[style*='opacity: 0']")
+	    ));
+	    
+	    // Attendre que le bouton soit cliquable
+	    wait.until(ExpectedConditions.elementToBeClickable(creerRepas));
+	    
+	    // Cliquer via JavaScript pour éviter l'interception
+	    ((JavascriptExecutor) Config.driver).executeScript("arguments[0].scrollIntoView(true);", creerRepas);
+	    ((JavascriptExecutor) Config.driver).executeScript("arguments[0].click();", creerRepas);
+	}
 	//public void messgaederreur(String text) {
 		
 	//	Alert alert = Config.driver.switchTo().alert();
@@ -261,6 +276,17 @@ public class RepasAvecNomVidePage {
 		    wait.until(ExpectedConditions.elementToBeClickable(annuler));
 		    act.moveToElement(annuler).click().perform();
 		
+		}
+		
+		public void verifierMessageErreur() {
+		    WebDriverWait wait = new WebDriverWait(Config.driver, Duration.ofSeconds(10));
+		    
+		    WebElement messageErreur = wait.until(ExpectedConditions.visibilityOfElementLocated(
+		        By.xpath("//*[contains(text(),'obligatoire') or contains(text(),'requis') or contains(text(),'required')]")
+		    ));
+		    
+		    System.out.println("Message d'erreur affiché : " + messageErreur.getText());
+		    assert messageErreur.isDisplayed() : "Le message d'erreur n'est pas affiché !";
 		}
 
 }

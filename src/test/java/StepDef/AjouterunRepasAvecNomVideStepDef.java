@@ -56,10 +56,20 @@ public class AjouterunRepasAvecNomVideStepDef {
 		AjouterRepasPage ajouter=new AjouterRepasPage();
 		ajouter.verifierPageGestionCantine(page);
 	}
-	@When("l'admin clique sur le bouton {string}")
-	public void l_admin_clique_sur_le_bouton(String string) {
-		AjouterRepasPage ajouter=new AjouterRepasPage();
-		ajouter.ClickOnbtn();
+	@When("l admin clique sur le bouton {string}")
+	public void l_admin_clique_sur_le_bouton(String buttonName) {
+	    switch (buttonName) {
+	        case "Ajouter un repas":
+	            AjouterRepasPage ajouter = new AjouterRepasPage();
+	            ajouter.ClickOnbtn();
+	            break;
+	        case "Créer le repas":
+	            RepasAvecNomVidePage repas = new RepasAvecNomVidePage();
+	            repas.ajouterRepas();
+	            break;
+	        default:
+	            throw new IllegalArgumentException("Bouton non reconnu : " + buttonName);
+	    }
 	}
 	@Then("le formulaire d'ajout d'un repas s'affiche")
 	public void le_formulaire_d_ajout_d_un_repas_s_affiche() {
@@ -68,10 +78,7 @@ public class AjouterunRepasAvecNomVideStepDef {
 	}
 
 	
-	@Then("un message d'erreur indique que le nom est obligatoire")
-	public void un_message_d_erreur_indique_que_le_nom_est_obligatoire() {
-	    
-	}
+	
 	
 	@Then("le repas n'apparaît pas dans la liste des repas")
 	public void le_repas_n_apparaît_pas_dans_la_liste_des_repas() {
@@ -119,9 +126,11 @@ public class AjouterunRepasAvecNomVideStepDef {
 		RepasAvecNomVidePage NomVide = new RepasAvecNomVidePage();
 		NomVide.ajouterRepas();
 	}
-	@Then("un message d erreur indique que le nom est obligatoire {string}")
-	public void un_message_d_erreur_indique_que_le_nom_est_obligatoire(String string) {
-	    
+	@Then("un message d erreur indique que le nom est obligatoire")
+	public void un_message_d_erreur_indique_que_le_nom_est_obligatoire() {
+
+	    RepasAvecNomVidePage repas = new RepasAvecNomVidePage();
+	    repas.verifierMessageErreur();
 	}
 
 	@Then("le repas n'apparaît pas dans la liste des repas et quite le formulaire")

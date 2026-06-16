@@ -5,7 +5,7 @@ import io.cucumber.junit.CucumberOptions;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-    features = "src\\main\\resources\\Features\\ModifierUnRepas.feature",
+    features = "src/main/resources/Features/AjouterReapsAvecNomVide.feature",
     glue = "StepDef",
     plugin = {
         "pretty",
