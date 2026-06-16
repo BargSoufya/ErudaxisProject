@@ -26,7 +26,7 @@ Feature: Ajouter un nouveau bus
 	|Adresse|15 rue de la république |
 	|Pays|France|
 	|Ville|Paris|
-	then l 'admin clique sur le bouton créer le chauffeur et un message de succès s 'affiche 
+	Then l 'admin clique sur le bouton créer le chauffeur et un message de succès s 'affiche 
 	
 	
 	Scenario: Ajouter un chaffeur avec Nom existant
