@@ -286,25 +286,35 @@ public class RepasAvecNomVidePage {
 		
 		}
 		
-		public void verifierMessageErreur() {
-		    WebDriverWait wait = new WebDriverWait(Config.driver, Duration.ofSeconds(10));
+		// public void verifierMessageErreur() {
+		//     WebDriverWait wait = new WebDriverWait(Config.driver, Duration.ofSeconds(10));
 		    
-		    WebElement messageErreur = wait.until(ExpectedConditions.visibilityOfElementLocated(
-		        By.xpath("//*[contains(text(),'obligatoire') or contains(text(),'requis') or contains(text(),'required')]")
-		    ));
+		//     WebElement messageErreur = wait.until(ExpectedConditions.visibilityOfElementLocated(
+		//         By.xpath("//*[contains(text(),'obligatoire') or contains(text(),'requis') or contains(text(),'required')]")
+		//     ));
 		    
-		    System.out.println("Message d'erreur affiché : " + messageErreur.getText());
-		    assert messageErreur.isDisplayed() : "Le message d'erreur n'est pas affiché !";
-		}
-=======
-    WebDriverWait wait = new WebDriverWait(Config.driver, Duration.ofSeconds(15));
-    Actions act = new Actions(Config.driver);
+		//     System.out.println("Message d'erreur affiché : " + messageErreur.getText());
+		//     assert messageErreur.isDisplayed() : "Le message d'erreur n'est pas affiché !";
+		// }
 
-    WebElement annulerBtn = wait.until(
-        ExpectedConditions.elementToBeClickable(annuler)
-    );
+  //   WebDriverWait wait = new WebDriverWait(Config.driver, Duration.ofSeconds(15));
+  //   Actions act = new Actions(Config.driver);
 
-    act.moveToElement(annulerBtn).click().perform();
-}
+  //   WebElement annulerBtn = wait.until(
+  //       ExpectedConditions.elementToBeClickable(annuler)
+  //   );
+
+  //   act.moveToElement(annulerBtn).click().perform();
+
+	public void verifierMessageErreur() {
+	    WebDriverWait wait = new WebDriverWait(Config.driver, Duration.ofSeconds(10));
+	    
+	    WebElement messageErreur = wait.until(ExpectedConditions.visibilityOfElementLocated(
+	        By.xpath("//*[contains(text(),'obligatoire') or contains(text(),'requis') or contains(text(),'required')]")
+	    ));
+	    
+	    System.out.println("Message d'erreur affiché : " + messageErreur.getText());
+	    assert messageErreur.isDisplayed() : "Le message d'erreur n'est pas affiché !";
+	}
 }
 }
