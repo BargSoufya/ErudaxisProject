@@ -18,7 +18,7 @@ public class RepasavecdDatePasseStepDef {
 	    // Ne pas appeler selectionnerDate ici
 	    
 	    RepasAvecNomVidePage NomVide=new RepasAvecNomVidePage();
-	    NomVide.ajouterRepasavecleschamps(date, date, 0, 0);
+	    NomVide.ajouterRepasAvecLesChamps(date, date, 0, 0);
 	}
 	@Then("un message d erreur sous le champ date")
 	public void un_message_d_erreur_sous_le_champ_date() {
@@ -49,16 +49,16 @@ public class RepasavecdDatePasseStepDef {
 	    RepasavecdDatePasse page = new RepasavecdDatePasse();
 	    RepasAvecNomVidePage NomVide = new RepasAvecNomVidePage();
 
-	    NomVide.ajouterRepasavecleschamps(
+	    NomVide.ajouterRepasAvecLesChamps(
 		        nom, 
 		        Categorie, 
 		        Integer.parseInt(Prix), 
 		        Integer.parseInt(Quantite)
 		    );
 		    NomVide.selectionnerEmoji(data.get("Emoji"));
-		    NomVide.selectionnerCatg(data.get("Catégorie"));
+		    NomVide.selectionnerCategorie(data.get("Catégorie"));
 		  
-		    NomVide.sasirdescription(data.get("Description"));
+		    NomVide.saisirDescription(data.get("Description"));
 		    NomVide.selectionnerDate(data.get("Date"));
    
 		        page.SaisirNom(data.get("Nom du repas"));

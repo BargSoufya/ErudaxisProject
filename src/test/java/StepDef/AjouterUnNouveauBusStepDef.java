@@ -25,7 +25,7 @@ public class AjouterUnNouveauBusStepDef {
 		AjouterUnNouveauBusPage bus= new AjouterUnNouveauBusPage();
 		bus.ClickOnSubMenuBus(submenusBus);
 	}
-	@When("l admin clique sur le bouton Ajouter un bus le formulaire d ajout d un bus s'affiche")
+	@When("l admin clique sur le bouton Ajouter un bus le formulaire d ajout d un bus s affiche")
 	public void l_admin_clique_sur_le_bouton_ajouter_un_bus_le_formulaire_d_ajout_d_un_bus_s_affiche(){
 		AjouterUnNouveauBusPage bus= new AjouterUnNouveauBusPage();
 		bus.ClickOnbtnBus();

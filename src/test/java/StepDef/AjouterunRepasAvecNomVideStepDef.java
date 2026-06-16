@@ -89,7 +89,7 @@ public class AjouterunRepasAvecNomVideStepDef {
 	@When("l dmin laisse le champ {string} vide")
 	public void l_dmin_laisse_le_champ_vide(String nom) {
 		RepasAvecNomVidePage NomVide = new RepasAvecNomVidePage();
-		NomVide.nomvide();
+		NomVide.laisserNomVide();
 	    
 	}
 	@When("l admin saisit les informations suivantes :")
@@ -108,16 +108,16 @@ public class AjouterunRepasAvecNomVideStepDef {
 	    String date= "Date";
 	    String nom="";
 	    RepasAvecNomVidePage NomVide = new RepasAvecNomVidePage();
-	    NomVide.ajouterRepasavecleschamps(
+	    NomVide.ajouterRepasAvecLesChamps(
 	        nom, 
 	        Categorie, 
 	        Integer.parseInt(Prix), 
 	        Integer.parseInt(Quantite)
 	    );
 	    NomVide.selectionnerEmoji(data.get("Emoji"));
-	    NomVide.selectionnerCatg(data.get("Catégorie"));
+	    NomVide.selectionnerCategorie(data.get("Catégorie"));
 	  
-	    NomVide.sasirdescription(data.get("Description"));
+	    NomVide.saisirDescription(data.get("Description"));
 	    NomVide.selectionnerDate(data.get("Date"));
 	}
 	
@@ -130,13 +130,17 @@ public class AjouterunRepasAvecNomVideStepDef {
 	public void un_message_d_erreur_indique_que_le_nom_est_obligatoire() {
 
 	    RepasAvecNomVidePage repas = new RepasAvecNomVidePage();
-		repas.messgaederreur("Veuillez saisir le nom du repas");
+
+		repas.verifierMessageErreur();
+
+	   
+
 	}
 
 	@Then("le repas n'apparaît pas dans la liste des repas et quite le formulaire")
 	public void le_repas_n_apparaît_pas_dans_la_liste_des_repas_et_quite_le_formulaire() {
 		RepasAvecNomVidePage NomVide = new RepasAvecNomVidePage();
-		NomVide.annulerlajout();
+		NomVide.annulerLajout();
 	}
 }
 
