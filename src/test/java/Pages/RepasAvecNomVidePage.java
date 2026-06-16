@@ -245,7 +245,6 @@ public class RepasAvecNomVidePage {
 	   
 	//}
 	
-<<<<<<< HEAD
 	public void ajouterRepas() {
 	    WebDriverWait wait = new WebDriverWait(Config.driver, Duration.ofSeconds(15));
 	    
@@ -261,8 +260,7 @@ public class RepasAvecNomVidePage {
 	    ((JavascriptExecutor) Config.driver).executeScript("arguments[0].scrollIntoView(true);", creerRepas);
 	    ((JavascriptExecutor) Config.driver).executeScript("arguments[0].click();", creerRepas);
 	}
-	//public void messgaederreur(String text) {
-=======
+	
 	public void messgaederreur(String text) {
 >>>>>>> 753a6a8fa3ba504a8a77c7c23de88648fed86df4
 		
