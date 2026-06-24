@@ -205,8 +205,7 @@ wait = new WebDriverWait(Config.driver, Duration.ofSeconds(90));
     try { Thread.sleep(500); } catch (Exception e) {}
     ((JavascriptExecutor) Config.driver).executeScript("arguments[0].click();", btn);
     System.out.println("Bouton Bus cliqué ✅");
-}Ce qui a été corrigé LigneAvantAprèsBy.xpath(...)/html/body/div[1]/div[2]/div/div/div/div/div[2]/button//button[contains(text(),'Ajouter')...]Si "Ajouter" ne suffit pas — debug pour trouver le vrai texteSi ça échoue encore, remplace temporairement par cette version qui affiche tous les boutons visibles :javapublic void ClickOnbtnBus() {
-    WebDriverWait wait = new WebDriverWait(Config.driver, Duration.ofSeconds(20));
+}
 
     try {
         WebElement btn = wait.until(ExpectedConditions.presenceOfElementLocated(
