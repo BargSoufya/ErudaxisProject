@@ -196,17 +196,6 @@ wait = new WebDriverWait(Config.driver, Duration.ofSeconds(90));
 	public void ClickOnbtnBus() {
     WebDriverWait wait = new WebDriverWait(Config.driver, Duration.ofSeconds(20));
 
-    // ✅ Remplace le XPath absolu par une recherche par texte
-    WebElement btn = wait.until(ExpectedConditions.presenceOfElementLocated(
-        By.xpath("//button[contains(text(),'Ajouter') or contains(text(),'ajouter')]")
-    ));
-
-    ((JavascriptExecutor) Config.driver).executeScript("arguments[0].scrollIntoView(true);", btn);
-    try { Thread.sleep(500); } catch (Exception e) {}
-    ((JavascriptExecutor) Config.driver).executeScript("arguments[0].click();", btn);
-    System.out.println("Bouton Bus cliqué ✅");
-}
-
     try {
         WebElement btn = wait.until(ExpectedConditions.presenceOfElementLocated(
             By.xpath("//button[contains(text(),'Ajouter') or contains(text(),'ajouter')]")
@@ -225,8 +214,7 @@ wait = new WebDriverWait(Config.driver, Duration.ofSeconds(90));
         });
         throw e;
     }
-}Relance et copie les lignes >>> [...] pour qu'on confirme le texte exact du bouton.
-	
+}
 	public void verifierSousMenuVisible(String submenuTitle) {
 	    WebDriverWait wait = new WebDriverWait(Config.driver, Duration.ofSeconds(15));
 
