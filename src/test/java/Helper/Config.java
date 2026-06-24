@@ -9,7 +9,7 @@ public class Config {
 
     public static WebDriver driver;
 
-    public static void Maximaize() {
+    public static void Maximize() {
         driver.manage().window().maximize();
     }
 
